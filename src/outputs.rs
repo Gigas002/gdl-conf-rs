@@ -16,7 +16,7 @@ pub struct Output {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub stderr: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub shorten: Option<bool>,
+    pub shorten: Option<BoolOrString>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub colors: Option<HashMap<String, String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -52,7 +52,7 @@ impl Output {
             stdout: None,
             stdin: None,
             stderr: None,
-            shorten: Some(true),
+            shorten: Some(BoolOrString::Bool(true)),
             colors: Some(colors),
             ansi: Some(false),
             skip: Some(true),

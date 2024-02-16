@@ -97,11 +97,11 @@ pub struct ExtractorBase {
     pub archive_pragma: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     // only list of strings
-    pub postprocessors: Option<Vec<String>>,
+    pub postprocessors: Option<Vec<StringOrPostprocessor>>,
     // Needs example
     // only list of strings
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub postprocessor_options: Option<Vec<String>>,
+    pub postprocessor_options: Option<Vec<StringOrPostprocessor>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub retries: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -84,7 +84,7 @@ pub enum PathOrLogConf {
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(untagged)]
-pub enum ListStringOrListPostprocessor {
-    String(Vec<String>),
-    Postprocessor(Vec<Postprocessor>),
+pub enum StringOrPostprocessor {
+    String(String),
+    Postprocessor(Postprocessor),
 }

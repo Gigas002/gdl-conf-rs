@@ -254,7 +254,7 @@ impl Zip {
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(untagged)]
-pub enum PostprocessorMapping {
+pub enum Postprocessors {
     Classify(Classify),
     Compare(Compare),
     Exec(Exec),
@@ -265,66 +265,58 @@ pub enum PostprocessorMapping {
     Zip(Zip),
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[derive(Debug, Serialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Postprocessor {
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    pub postprocessor: PostprocessorMapping,
+    pub postprocessor: Option<Postprocessors>,
 }
 
 impl Postprocessor {
-    pub fn new(name: String, postprocessor: PostprocessorMapping) -> Self {
-        return Postprocessor { name, postprocessor }
+    pub fn new(name: String, postprocessor: Postprocessors) -> Self {
+        return Postprocessor {
+            name: Some(name),
+            postprocessor: Some(postprocessor),
+        }
     }
 }
 
-#[derive(Debug, Serialize, PartialEq, Clone)]
-#[serde(untagged)]
-pub enum Postprocessors {
-    Postprocessors(HashMap<String, Postprocessor>),
-}
-
-impl <'de> Deserialize<'de> for Postprocessors {
+impl <'de> Deserialize<'de> for Postprocessor {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error> where D: Deserializer<'de>,
     {
-        let mut result: HashMap<String, Postprocessor> = HashMap::new();
+        let postprocessor_value = Value::deserialize(deserializer)?;
+        let postprocessor_map = postprocessor_value.as_object().unwrap();
 
-        let postprocessor_root_value = Value::deserialize(deserializer)?;
-        let postprocessor_root_map = postprocessor_root_value.as_object().unwrap();
-
-        for postprocessor_root_pair in postprocessor_root_map {
-            let postprocessor_name = postprocessor_root_pair.0;
-            let postprocessor_value = postprocessor_root_pair.1;
-
-            if postprocessor_name.ne("#") {
-                let postprocessor_map = postprocessor_value.as_object().unwrap();
+        let mut name: Option<String> = None;
+        let mut postprocessor: Option<Postprocessors> = None;
             
-                for postprocessor_map_pair in postprocessor_map {
-                    let key = postprocessor_map_pair.0;
-                    let value = postprocessor_map_pair.1;
+        for postprocessor_map_pair in postprocessor_map {
+            let key = postprocessor_map_pair.0;
+            let value = postprocessor_map_pair.1;
 
-                    if key.to_string().eq("name") {
-                        let postprocessor_type = value.as_str().unwrap();
+            if key.to_string().eq("name") {
+                let postprocessor_type = value.as_str().unwrap();
 
-                        let pp = match postprocessor_type {
-                            "classify" => Some(PostprocessorMapping::Classify(serde_json::from_value::<Classify>(postprocessor_value.clone()).unwrap())),
-                            "compare" => Some(PostprocessorMapping::Compare(serde_json::from_value::<Compare>(postprocessor_value.clone()).unwrap())),
-                            "exec" => Some(PostprocessorMapping::Exec(serde_json::from_value::<Exec>(postprocessor_value.clone()).unwrap())),
-                            "metadata" => Some(PostprocessorMapping::Metadata(serde_json::from_value::<Metadata>(postprocessor_value.clone()).unwrap())),
-                            "mtime" => Some(PostprocessorMapping::Mtime(serde_json::from_value::<Mtime>(postprocessor_value.clone()).unwrap())),
-                            "python" => Some(PostprocessorMapping::Python(serde_json::from_value::<Python>(postprocessor_value.clone()).unwrap())),
-                            "ugoira" => Some(PostprocessorMapping::Ugoira(serde_json::from_value::<Ugiora>(postprocessor_value.clone()).unwrap())),
-                            "zip" => Some(PostprocessorMapping::Zip(serde_json::from_value::<Zip>(postprocessor_value.clone()).unwrap())),
-                            _ => None
-                        }.unwrap();
+                postprocessor = match postprocessor_type {
+                    "classify" => Some(Postprocessors::Classify(serde_json::from_value::<Classify>(postprocessor_value.clone()).unwrap())),
+                    "compare" => Some(Postprocessors::Compare(serde_json::from_value::<Compare>(postprocessor_value.clone()).unwrap())),
+                    "exec" => Some(Postprocessors::Exec(serde_json::from_value::<Exec>(postprocessor_value.clone()).unwrap())),
+                    "metadata" => Some(Postprocessors::Metadata(serde_json::from_value::<Metadata>(postprocessor_value.clone()).unwrap())),
+                    "mtime" => Some(Postprocessors::Mtime(serde_json::from_value::<Mtime>(postprocessor_value.clone()).unwrap())),
+                    "python" => Some(Postprocessors::Python(serde_json::from_value::<Python>(postprocessor_value.clone()).unwrap())),
+                    "ugoira" => Some(Postprocessors::Ugoira(serde_json::from_value::<Ugiora>(postprocessor_value.clone()).unwrap())),
+                    "zip" => Some(Postprocessors::Zip(serde_json::from_value::<Zip>(postprocessor_value.clone()).unwrap())),
+                    _ => None
+                };
 
-                        result.insert(postprocessor_name.to_string(), Postprocessor::new(postprocessor_type.to_string(), pp));
-                    }
-                }
+                name = Some(postprocessor_type.to_string());
+                break;
             }
         }
 
-        return Ok(Postprocessors::Postprocessors(result));
+        return Ok(Postprocessor::new(name.unwrap(), postprocessor.unwrap()));
     }
 }

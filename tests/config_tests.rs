@@ -28,7 +28,6 @@ pub mod serde_test_util {
 }
 
 use std::collections::HashMap;
-
 use gdl_conf_rs::{
     cache::*,
     config::*,
@@ -37,43 +36,45 @@ use gdl_conf_rs::{
     postprocessors::*,
     extractors::extractor::*,
 };
+
 #[test]
 fn serde_config_test() {
     // let path = "tests/data/gdl_example.json";
     // let path = "tests/data/gdl.json";
     let path = "tests/data/config.json";
+    // let path = "tests/data/gdl_ex.json";
     
     let cl = Postprocessor {
-        name: "classify".to_string(),
-        postprocessor: PostprocessorMapping::Classify(Classify::new()),
+        name: Some("classify".to_string()),
+        postprocessor: Some(Postprocessors::Classify(Classify::new())),
     };
     let co = Postprocessor {
-        name: "compare".to_string(),
-        postprocessor: PostprocessorMapping::Compare(Compare::new()),
+        name: Some("compare".to_string()),
+        postprocessor: Some(Postprocessors::Compare(Compare::new())),
     };
     let e = Postprocessor {
-        name: "exec".to_string(),
-        postprocessor: PostprocessorMapping::Exec(Exec::new()),
+        name: Some("exec".to_string()),
+        postprocessor: Some(Postprocessors::Exec(Exec::new())),
     };
     let m = Postprocessor {
-        name: "metadata".to_string(),
-        postprocessor: PostprocessorMapping::Metadata(Metadata::new()),
+        name: Some("metadata".to_string()),
+        postprocessor: Some(Postprocessors::Metadata(Metadata::new())),
     };
     let mt = Postprocessor {
-        name: "mtime".to_string(),
-        postprocessor: PostprocessorMapping::Mtime(Mtime::new()),
+        name: Some("mtime".to_string()),
+        postprocessor: Some(Postprocessors::Mtime(Mtime::new())),
     };
     let py = Postprocessor {
-        name: "python".to_string(),
-        postprocessor: PostprocessorMapping::Python(Python::new()),
+        name: Some("python".to_string()),
+        postprocessor: Some(Postprocessors::Python(Python::new())),
     };
     let u = Postprocessor {
-        name: "ugoira".to_string(),
-        postprocessor: PostprocessorMapping::Ugoira(Ugiora::new()),
+        name: Some("ugoira".to_string()),
+        postprocessor: Some(Postprocessors::Ugoira(Ugiora::new())),
     };
     let z = Postprocessor {
-        name: "zip".to_string(),
-        postprocessor: PostprocessorMapping::Zip(Zip::new()),
+        name: Some("zip".to_string()),
+        postprocessor: Some(Postprocessors::Zip(Zip::new())),
     };
 
     let mut pps: HashMap<String, Postprocessor> = HashMap::new();
@@ -85,16 +86,11 @@ fn serde_config_test() {
     pps.insert("py".to_string(), py);
     pps.insert("ugo".to_string(), u);
     pps.insert("zi".to_string(), z);
-    let p: Postprocessors = Postprocessors::Postprocessors(pps);
 
-    let mut extractor: Extractor = Extractor::new();
-    let mut e_base = ExtractorBase::default();
-    e_base.postprocessors = Some(vec!["huing".to_string()]);
-    e_base.postprocessor_options = Some(vec!["pohuing".to_string()]);
-    extractor.base = Some(e_base);
+    let extractor: Extractor = Extractor::new();
 
     let mut config = Config::new();
-    config.postprocessor = Some(p);
+    config.postprocessor = Some(pps);
     config.cache = Some(Cache::new());
     config.downloader = Some(Downloader::new());
     config.output = Some(Output::new());
