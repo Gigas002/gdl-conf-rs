@@ -6,7 +6,7 @@ use serde::{
 };
 use serde_json::Value;
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Classify {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mapping: Option<HashMap<String, Vec<String>>>,
@@ -20,7 +20,7 @@ impl Classify {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Compare {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub action: Option<String>,
@@ -40,7 +40,7 @@ impl Compare {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Exec {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub archive: Option<Path>,
@@ -64,7 +64,7 @@ impl Exec {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Metadata {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -132,7 +132,7 @@ impl Metadata {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Mtime {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub event: Option<String>,
@@ -152,7 +152,7 @@ impl Mtime {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Python {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub archive: Option<Path>,
@@ -172,7 +172,7 @@ impl Python {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Ugiora {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -220,7 +220,7 @@ impl Ugiora {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Zip {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -247,7 +247,7 @@ impl Zip {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(untagged)]
 pub enum PostprocessorMapping {
     Classify(Classify),
@@ -260,7 +260,7 @@ pub enum PostprocessorMapping {
     Zip(Zip),
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Postprocessor {
     pub name: String,
     #[serde(flatten)]
@@ -273,7 +273,7 @@ impl Postprocessor {
     }
 }
 
-#[derive(Serialize, Debug, PartialEq)]
+#[derive(Debug, Serialize, PartialEq, Clone)]
 #[serde(untagged)]
 pub enum Postprocessors {
     Postprocessors(HashMap<String, Postprocessor>),

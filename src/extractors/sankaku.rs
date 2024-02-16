@@ -1,6 +1,6 @@
 use super::extractor::ExtractorBase;
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Sankaku {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -23,7 +23,7 @@ impl Sankaku {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct SankakuComplex {
     #[serde(skip_serializing_if = "Option::is_none")]

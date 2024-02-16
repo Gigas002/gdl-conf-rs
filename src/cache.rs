@@ -1,7 +1,7 @@
 use super::enums::Path;
 use std::env::consts;
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Cache {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub file: Option<Path>,

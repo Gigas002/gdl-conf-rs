@@ -7,7 +7,7 @@ use super::{
     enums::*,
 };
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Config {
     #[serde(skip_serializing_if = "Option::is_none")]

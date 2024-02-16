@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use super::enums::*;
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct DownloaderBase {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -49,7 +49,7 @@ impl DownloaderBase {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Http {
     #[serde(flatten)]
@@ -83,7 +83,7 @@ impl Http {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Ytdl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -124,7 +124,7 @@ impl Ytdl {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Downloader {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -152,7 +152,7 @@ impl Downloader {
 
 // This method doesn't work if we want to use as much optional fields as possible
 // because it doesn't know how to match them to structs
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(untagged)]
 pub enum Downloaders {
     Http(Http),

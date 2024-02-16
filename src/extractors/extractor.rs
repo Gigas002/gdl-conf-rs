@@ -5,7 +5,7 @@ use crate::{
 };
 
 /// Base properties for all extractors
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct ExtractorBase {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -276,7 +276,7 @@ impl ExtractorBase {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Extractor {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -314,7 +314,7 @@ impl Extractor {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(untagged)]
 pub enum Extractors {
     Sankaku(Sankaku),
