@@ -4,7 +4,6 @@ use super::{
     extractors::extractor::Extractor,
     outputs::Output,
     downloaders::Downloader,
-    postprocessors::*,
     cache::Cache,
     enums::*,
 };
@@ -18,9 +17,8 @@ pub struct Config {
     pub downloader: Option<Downloader>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub output: Option<Output>,
-    // comments not fucking supported
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub postprocessor: Option<HashMap<String, Postprocessor>>,
+    pub postprocessor: Option<HashMap<String, StringOrPostprocessor>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub globals: Option<Path>,
     #[serde(skip_serializing_if = "Option::is_none")]

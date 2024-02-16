@@ -1,0 +1,47 @@
+{
+    "#": "comment_1",
+    "downloader":
+    {
+        "#": "comment_2",
+        "enabled": true,
+        "filesize-min": "1.0M",
+        "filesize-max": "1.0M",
+        "mtime": false,
+        "part": false,
+        "part-directory": "/tmp/.download/",
+        "progress": 2.0,
+        "rate": "1M",
+        "retries": 3,
+        "timeout": 8.0,
+        "verify": true,
+        "proxy": "proxy",
+        "ytdl":
+        {
+            "#": "comment_3",
+            "enabled": true,
+            "format": "format",
+            "forward-cookies": false,
+            "logging": true,
+            "module": "yt_dlp",
+            "outtmpl": "outtmpl",
+            "raw-options": {
+                "opt": "opt_val"
+            },
+            "cmdline-args": "args",
+            "config-file": "conf"
+        },
+        "http":
+        {
+            "#": "comment_4",
+            "enabled": true,
+            "adjust-extensions": true,
+            "consume-content": true,
+            "chunk-size": 32768,
+            "headers": {
+                "name": "value"
+            },
+            "retry-codes": [200],
+            "validate": true
+        }
+    }
+}

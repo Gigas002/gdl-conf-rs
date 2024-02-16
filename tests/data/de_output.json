@@ -1,0 +1,55 @@
+{
+    "#": "comment_1",
+    "output":
+    {
+        "#": "comment_2",
+        "mode": "mode",
+        "stdout": "stdout",
+        "stdin": "stdin",
+        "stderr": "stderr",
+        "shorten": "eaw",
+        "colors": {
+            "#": "comment_3",
+            "success": "1;32",
+            "skip"   : "2"
+        },
+        "ansi": true,
+        "skip": true,
+        "fallback": true,
+        "private": true,
+        "progress": true,
+        "log": {
+            "#": "comment_4",
+            "level": "info",
+            "format": {
+                "#": "comment_5",
+                "debug"  : "\u001b[0;37m{name}: {message}\u001b[0m",
+                "info"   : "\u001b[1;37m{name}: {message}\u001b[0m",
+                "warning": "\u001b[1;33m{name}: {message}\u001b[0m",
+                "error"  : "\u001b[1;31m{name}: {message}\u001b[0m"
+            }
+        },
+        "logfile": {
+            "#": "comment_6",
+            "level": "debug",
+            "format": "{asctime} {message}",
+            "format-date": "%Y-%m-%d-%H-%M-%S",
+            "path": "~/gallery-dl/log.txt",
+            "encoding": "utf-8",
+            "mode": "w"
+        },
+        "unsupportedfile": {
+            "#": "comment_7",
+            "level": "debug",
+            "format": {
+            },
+            "format-date": "%Y-%m-%d-%H-%M-%S",
+            "path": "~/gallery-dl/log.txt",
+            "encoding": "utf-8",
+            "mode": "w"
+        },
+        "errorfile": {
+        },
+        "num-to-str": true
+    }
+}

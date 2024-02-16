@@ -1,0 +1,82 @@
+{
+    "#": "comment_1",
+    "postprocessor": {
+        "#": "comment_2",
+        "classify": {
+            "#": "comment_3",
+            "name": "classify",
+            "mapping": {
+                "str": ["vec"]
+            }
+        },
+        "compare": {
+            "name": "compare",
+            "action": "kebab",
+            "equal": "shaurma",
+            "shallow": true
+        },
+        "exec": {
+            "name": "exec",
+            "archive": "path",
+            "async": true,
+            "command": "command",
+            "event": "event"
+        },
+        "content": {
+            "name" : "metadata",
+            "mode" : "custom",
+            "filename": "{post_id|tweet_id|id}.txt",
+            "directory": "dir",
+            "extension": "ext",
+            "extension-format": "form",
+            "event": "post",
+            "fields": ["vec"],
+            "content-format": "form",
+            "ascii": true,
+            "indent": 4,
+            "separators": ["."],
+            "sort": true,
+            "open": "o",
+            "encoding": "utf-8",
+            "private": true,
+            "skip": true,
+            "archive": "path",
+            "mtime": true
+        },
+        "mtime": {
+            "name": "mtime",
+            "event": "event",
+            "key": "k",
+            "value": "v"
+        },
+        "python": {
+            "name": "python",
+            "archive": "a",
+            "event": "event",
+            "function": "f"
+        },
+        "ugoira-webm": {
+            "name": "ugoira",
+            "extension": "webm",
+            "ffmpeg-args": ["-c:v", "libvpx-vp9", "-an", "-b:v", "0", "-crf", "30"],
+            "ffmpeg-demuxer": "image2",
+            "ffmpeg-location": "ffmpeg",
+            "mkvmerge-location": "m",
+            "ffmpeg-output": "o",
+            "ffmpeg-twopass": true,
+            "framerate": "1",
+            "keep-files": true,
+            "libx264-prevent-odd": true,
+            "mtime": true,
+            "repeat-last-frame": true
+        },
+        "zip": {
+            "name": "zip",
+            "compression": "c",
+            "extension": "e",
+            "files": ["vec"],
+            "keep-files": true,
+            "mode": "w"
+        }
+    }
+}

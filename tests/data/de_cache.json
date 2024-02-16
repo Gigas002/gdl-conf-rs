@@ -1,0 +1,7 @@
+{
+    "#": "comment_1",
+    "cache": {
+        "#": "comment_2",
+        "file": "~/gallery-dl/cache.sqlite3"
+    }
+}

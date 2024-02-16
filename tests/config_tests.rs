@@ -35,39 +35,10 @@ use gdl_conf_rs::{
     extractors::extractor::*,
     outputs::*,
     postprocessors::*,
+    enums::*,
 };
 
-#[test]
-fn ser_empty_test() {
-    let path = "tests/data/ser_empty.json";
-
-    let mut config = Config::new();
-    config.format_separator = None;
-    config.warnings = None;
-
-    let _ = serde_test_util::ser(&config, path).unwrap();
-}
-
-#[test]
-fn de_empty_test() {
-    let path = "tests/data/de_empty.json";
-
-    let _ = serde_test_util::de::<Config>(path).unwrap();
-}
-
-#[test]
-fn serde_empty_test() {
-    let path = "tests/data/serde_empty.json";
-
-    let mut config = Config::new();
-    config.format_separator = None;
-    config.warnings = None;
-
-    let _ = serde_test_util::ser(&config, path).unwrap();
-    let result = serde_test_util::de::<Config>(path).unwrap();
-
-    assert_eq!(config, result);
-}
+// TODO: empty classes, nulls, specific extractors, alt values, simplify to use one test for each struct
 
 #[test]
 fn ser_extractor_test() {
@@ -80,9 +51,17 @@ fn ser_extractor_test() {
 
 #[test]
 fn de_extractor_test() {
-    let path = "tests/data/de_extractor.json";
+    let test_cases = [
+        ("tests/data/de_extractor.json", "de_extractor"),
+        ("tests/data/de_extractor_empty.json", "de_extractor_empty"),
+    ];
 
-    let _ = serde_test_util::de::<Extractor>(path).unwrap();
+    for (path, case_name) in &test_cases {
+        match serde_test_util::de::<Config>(path) {
+            Ok(_) => println!("{} passed successfully!", case_name),
+            Err(err) => panic!("{} failed: {:?}", case_name, err),
+        }
+    }
 }
 
 #[test]
@@ -108,9 +87,17 @@ fn ser_cache_test() {
 
 #[test]
 fn de_cache_test() {
-    let path = "tests/data/de_cache.json";
+    let test_cases = [
+        ("tests/data/de_cache.json", "de_cache"),
+        ("tests/data/de_cache_empty.json", "de_cache_empty"),
+    ];
 
-    let _ = serde_test_util::de::<Cache>(path).unwrap();
+    for (path, case_name) in &test_cases {
+        match serde_test_util::de::<Config>(path) {
+            Ok(_) => println!("{case_name} passed successfully!"),
+            Err(err) => panic!("{case_name} failed: {:?}", err),
+        }
+    }
 }
 
 #[test]
@@ -126,6 +113,38 @@ fn serde_cache_test() {
 }
 
 #[test]
+fn ser_config_empty_test() {
+    let path = "tests/data/ser_config_empty.json";
+
+    let mut config = Config::new();
+    config.format_separator = None;
+    config.warnings = None;
+
+    let _ = serde_test_util::ser(&config, path).unwrap();
+}
+
+#[test]
+fn de_config_empty_test() {
+    let path = "tests/data/de_config_empty.json";
+
+    let _ = serde_test_util::de::<Config>(path).unwrap();
+}
+
+#[test]
+fn serde_config_empty_test() {
+    let path = "tests/data/serde_config_empty.json";
+
+    let mut config = Config::new();
+    config.format_separator = None;
+    config.warnings = None;
+
+    let _ = serde_test_util::ser(&config, path).unwrap();
+    let result = serde_test_util::de::<Config>(path).unwrap();
+
+    assert_eq!(config, result);
+}
+
+#[test]
 fn ser_config_test() {
 
 }
@@ -133,115 +152,6 @@ fn ser_config_test() {
 #[test]
 fn de_config_test() {
 
-}
-
-// TODO: simplify test variants to use one test
-
-#[test]
-fn de_gallery_dl_conf_test() {
-    let path = "tests/data/de_gallery_dl.json";
-
-    let _ = serde_test_util::de::<Config>(path).unwrap();
-}
-
-#[test]
-fn de_gallery_dl_example_conf_test() {
-    let path = "tests/data/de_gallery_dl_example.json";
-
-    let _ = serde_test_util::de::<Config>(path).unwrap();
-}
-
-// #[test]
-// fn serde_config_test() {
-
-// }
-
-// TODO: gallery-dl repo's examples
-
-#[test]
-fn ser_downloader_test() {
-    let path = "tests/data/ser_downloader.json";
-
-    let downloader = Downloader::new();
-
-    let _ = serde_test_util::ser(&downloader, path).unwrap();
-}
-
-#[test]
-fn de_downloader_test() {
-    let path = "tests/data/de_downloader.json";
-
-    let _ = serde_test_util::de::<Downloader>(path).unwrap();
-}
-
-#[test]
-fn serde_downloader_test() {
-    let path = "tests/data/serde_downloader.json";
-
-    let downloader = Downloader::new();
-
-    let _ = serde_test_util::ser(&downloader, path).unwrap();
-    let result = serde_test_util::de::<Downloader>(path).unwrap();
-
-    assert_eq!(downloader, result);
-}
-
-#[test]
-fn ser_output_test() {
-    let path = "tests/data/ser_output.json";
-
-    let output = Output::new();
-
-    let _ = serde_test_util::ser(&output, path).unwrap();
-}
-
-#[test]
-fn de_output_test() {
-    let path = "tests/data/de_output.json";
-
-    let _ = serde_test_util::de::<Output>(path).unwrap();
-}
-
-#[test]
-fn serde_output_test() {
-    let path = "tests/data/serde_output.json";
-
-    let output = Output::new();
-
-    let _ = serde_test_util::ser(&output, path).unwrap();
-    let result = serde_test_util::de::<Output>(path).unwrap();
-
-    assert_eq!(output, result);
-}
-
-#[test]
-fn ser_postprocessor_test() {
-    let path = "tests/data/ser_postprocessor.json";
-
-    let zip = Postprocessors::Zip(Zip::new());
-    let postprocessor = Postprocessor::new("zip".to_string(), zip);
-
-    let _ = serde_test_util::ser(&postprocessor, path).unwrap();
-}
-
-#[test]
-fn de_postprocessor_test() {
-    let path = "tests/data/de_postprocessor.json";
-
-    let _ = serde_test_util::de::<Postprocessor>(path).unwrap();
-}
-
-#[test]
-fn serde_postprocessor_test() {
-    let path = "tests/data/serde_postprocessor.json";
-
-    let zip = Postprocessors::Zip(Zip::new());
-    let postprocessor = Postprocessor::new("zip".to_string(), zip);
-
-    let _ = serde_test_util::ser(&postprocessor, path).unwrap();
-    let result = serde_test_util::de::<Postprocessor>(path).unwrap();
-
-    assert_eq!(postprocessor, result);
 }
 
 #[test]
@@ -284,15 +194,15 @@ fn serde_config_test() {
         postprocessor: Some(Postprocessors::Zip(Zip::new())),
     };
 
-    let mut pps: HashMap<String, Postprocessor> = HashMap::new();
-    pps.insert("cla".to_string(), cl);
-    pps.insert("co".to_string(), co);
-    pps.insert("exec".to_string(), e);
-    pps.insert("meta".to_string(), m);
-    pps.insert("mt".to_string(), mt);
-    pps.insert("py".to_string(), py);
-    pps.insert("ugo".to_string(), u);
-    pps.insert("zi".to_string(), z);
+    let mut pps: HashMap<String, StringOrPostprocessor> = HashMap::new();
+    pps.insert("cla".to_string(), StringOrPostprocessor::Postprocessor(cl));
+    pps.insert("co".to_string(), StringOrPostprocessor::Postprocessor(co));
+    pps.insert("exec".to_string(), StringOrPostprocessor::Postprocessor(e));
+    pps.insert("meta".to_string(), StringOrPostprocessor::Postprocessor(m));
+    pps.insert("mt".to_string(), StringOrPostprocessor::Postprocessor(mt));
+    pps.insert("py".to_string(), StringOrPostprocessor::Postprocessor(py));
+    pps.insert("ugo".to_string(), StringOrPostprocessor::Postprocessor(u));
+    pps.insert("zi".to_string(), StringOrPostprocessor::Postprocessor(z));
 
     let extractor: Extractor = Extractor::new();
 
@@ -310,4 +220,130 @@ fn serde_config_test() {
     let _ = serde_test_util::ser(&result, path_serde).unwrap();
     
     assert_eq!(config, result);
+}
+
+// TODO: gallery-dl repo's examples
+
+#[test]
+fn de_config_gallery_dl_conf_test() {
+    let path = "tests/data/de_gallery_dl.json";
+
+    let _ = serde_test_util::de::<Config>(path).unwrap();
+}
+
+#[test]
+fn de_config_gallery_dl_example_conf_test() {
+    let path = "tests/data/de_gallery_dl_example.json";
+
+    let _ = serde_test_util::de::<Config>(path).unwrap();
+}
+
+#[test]
+fn ser_downloader_test() {
+    let path = "tests/data/ser_downloader.json";
+
+    let downloader = Downloader::new();
+
+    let _ = serde_test_util::ser(&downloader, path).unwrap();
+}
+
+#[test]
+fn de_downloader_test() {
+    let test_cases = [
+        ("tests/data/de_downloader.json", "de_downloader"),
+        ("tests/data/de_downloader_empty.json", "de_downloader_empty"),
+    ];
+
+    for (path, case_name) in &test_cases {
+        match serde_test_util::de::<Config>(path) {
+            Ok(_) => println!("{} passed successfully!", case_name),
+            Err(err) => panic!("{} failed: {:?}", case_name, err),
+        }
+    }
+}
+
+#[test]
+fn serde_downloader_test() {
+    let path = "tests/data/serde_downloader.json";
+
+    let downloader = Downloader::new();
+
+    let _ = serde_test_util::ser(&downloader, path).unwrap();
+    let result = serde_test_util::de::<Downloader>(path).unwrap();
+
+    assert_eq!(downloader, result);
+}
+
+#[test]
+fn ser_output_test() {
+    let path = "tests/data/ser_output.json";
+
+    let output = Output::new();
+
+    let _ = serde_test_util::ser(&output, path).unwrap();
+}
+
+#[test]
+fn de_output_test() {
+    let test_cases = [
+        ("tests/data/de_output.json", "de_output"),
+        ("tests/data/de_output_empty.json", "de_output_empty"),
+    ];
+
+    for (path, case_name) in &test_cases {
+        match serde_test_util::de::<Config>(path) {
+            Ok(_) => println!("{} passed successfully!", case_name),
+            Err(err) => panic!("{} failed: {:?}", case_name, err),
+        }
+    }
+}
+
+#[test]
+fn serde_output_test() {
+    let path = "tests/data/serde_output.json";
+
+    let output = Output::new();
+
+    let _ = serde_test_util::ser(&output, path).unwrap();
+    let result = serde_test_util::de::<Output>(path).unwrap();
+
+    assert_eq!(output, result);
+}
+
+#[test]
+fn ser_postprocessor_test() {
+    let path = "tests/data/ser_postprocessor.json";
+
+    let zip = Postprocessors::Zip(Zip::new());
+    let postprocessor = Postprocessor::new("zip".to_string(), zip);
+
+    let _ = serde_test_util::ser(&postprocessor, path).unwrap();
+}
+
+#[test]
+fn de_postprocessor_test() {
+    let test_cases = [
+        ("tests/data/de_postprocessor.json", "de_postprocessor"),
+        ("tests/data/de_postprocessor_empty.json", "de_postprocessor_empty"),
+    ];
+
+    for (path, case_name) in &test_cases {
+        match serde_test_util::de::<Config>(path) {
+            Ok(_) => println!("{} passed successfully!", case_name),
+            Err(err) => panic!("{} failed: {:?}", case_name, err),
+        }
+    }
+}
+
+#[test]
+fn serde_postprocessor_test() {
+    let path = "tests/data/serde_postprocessor.json";
+
+    let zip = Postprocessors::Zip(Zip::new());
+    let postprocessor = Postprocessor::new("zip".to_string(), zip);
+
+    let _ = serde_test_util::ser(&postprocessor, path).unwrap();
+    let result = serde_test_util::de::<Postprocessor>(path).unwrap();
+
+    assert_eq!(postprocessor, result);
 }
