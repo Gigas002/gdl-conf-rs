@@ -150,11 +150,9 @@ impl Downloader {
     }
 }
 
-// This method doesn't work if we want to use as much optional fields as possible
-// because it doesn't know how to match them to structs
-#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
-#[serde(untagged)]
-pub enum Downloaders {
-    Http(Http),
-    Ytdl(Ytdl),
-}
+// #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+// #[serde(untagged)]
+// pub enum Downloaders {
+//     Http(Http),
+//     Ytdl(Ytdl),
+// }

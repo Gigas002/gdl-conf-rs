@@ -314,9 +314,9 @@ impl Extractor {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
-#[serde(untagged)]
-pub enum Extractors {
-    Sankaku(Sankaku),
-    SankakuComplex(SankakuComplex)
-}
+// #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+// #[serde(untagged)]
+// pub enum Extractors {
+//     Sankaku(Sankaku),
+//     SankakuComplex(SankakuComplex)
+// }
