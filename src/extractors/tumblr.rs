@@ -11,8 +11,8 @@ pub struct Tumblr {
     base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
     avatar: Option<bool>,
-    date_min: Option<i64>,
-    date_max: Option<i64>,
+    date_min: Option<StringOrInteger>,
+    date_max: Option<StringOrInteger>,
     external: Option<bool>,
     inline: Option<bool>,
     offset: Option<i64>,
@@ -31,8 +31,8 @@ impl Tumblr {
         return Tumblr {
             base: None,
             avatar: Some(false),
-            date_min: Some(0),
-            date_max: Some(0),
+            date_min: Some(StringOrInteger::Integer(0)),
+            date_max: None,
             external: Some(false),
             inline: Some(true),
             offset: Some(0),

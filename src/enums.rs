@@ -88,3 +88,11 @@ pub enum StringOrPostprocessor {
     String(String),
     Postprocessor(Postprocessor),
 }
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(untagged)]
+pub enum Duration {
+    Float(f64),
+    FloatList(Vec<f64>),
+    String(String),
+}

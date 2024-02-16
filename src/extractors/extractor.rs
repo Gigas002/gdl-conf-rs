@@ -35,11 +35,11 @@ pub struct ExtractorBase {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub skip: Option<BoolOrString>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub sleep: Option<i64>,
+    pub sleep: Option<Duration>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub sleep_extractor: Option<i64>,
+    pub sleep_extractor: Option<Duration>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub sleep_request: Option<i64>,
+    pub sleep_request: Option<Duration>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub username: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -162,9 +162,9 @@ impl ExtractorBase {
             path_extended: Some(true),
             extension_map: Some(extension_map),
             skip: Some(BoolOrString::Bool(true)),
-            sleep: Some(0),
-            sleep_extractor: Some(0),
-            sleep_request: Some(0),
+            sleep: Some(Duration::Float(0.0)),
+            sleep_extractor: Some(Duration::Float(0.0)),
+            sleep_request: Some(Duration::Float(0.0)),
             username: None,
             password: None,
             netrc: Some(false),
