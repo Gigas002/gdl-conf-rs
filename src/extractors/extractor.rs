@@ -303,13 +303,13 @@ impl Extractor {
         // categories.insert("sankakucomplex".to_string(), Extractors::SankakuComplex(SankakuComplex::new()));
 
         return Extractor {
-            base: None, // ExtractorBase::default(),
+            base: Some(ExtractorBase::default()),
             modules: None,
             module_sources: None,
-
+            // categories: Some(categories),
+            
             sankaku: Some(Sankaku::new()),
             sankakucomplex: Some(SankakuComplex::new()),
-            // categories: Some(categories),
         };
     }
 }

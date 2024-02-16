@@ -3,7 +3,8 @@ use std::env::consts;
 
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Cache {
-    pub file: Path,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file: Option<Path>,
 }
 
 impl Cache {
@@ -14,7 +15,7 @@ impl Cache {
         };
 
         return Cache {
-            file: Path::String(format!("{path}/gallery-dl/cache.sqlite3")),
+            file: Some(Path::String(format!("{path}/gallery-dl/cache.sqlite3"))),
         };
     }
 }

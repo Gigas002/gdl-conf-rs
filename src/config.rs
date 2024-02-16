@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use super::{
     extractors::extractor::Extractor,
     outputs::Output,
@@ -17,10 +16,8 @@ pub struct Config {
     pub downloader: Option<Downloader>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub output: Option<Output>,
-    // TODO: panics when not in file
     #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(deserialize_with = "deserialize_postprocessor_map")]
-    pub postprocessor: Option<HashMap<String, Postprocessor>>,
+    pub postprocessor: Option<Postprocessors>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub globals: Option<Path>,
     #[serde(skip_serializing_if = "Option::is_none")]

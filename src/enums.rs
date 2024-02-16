@@ -1,5 +1,8 @@
 use std::collections::HashMap;
-use super::postprocessors::*;
+use super::{
+    outputs::*,
+    postprocessors::*,
+};
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 #[serde(untagged)]
@@ -77,23 +80,6 @@ pub enum ListOrHashMap {
 pub enum PathOrLogConf {
     Path(Path),
     LogConf(LoggingConfiguration)
-}
-
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
-#[serde(rename_all = "kebab-case")]
-pub struct LoggingConfiguration {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub level: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub format: Option<StringOrHashMap>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub format_date: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub path: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub encoding: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub mode: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]

@@ -86,6 +86,7 @@ impl Http {
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Ytdl {
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<DownloaderBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -126,8 +127,10 @@ impl Ytdl {
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Downloader {
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    pub base: DownloaderBase,
+    pub base: Option<DownloaderBase>,
+    // #[serde(skip_serializing_if = "Option::is_none")]
     // #[serde(flatten)]
     // pub downloaders: Option<HashMap<String, Downloaders>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -139,7 +142,7 @@ pub struct Downloader {
 impl Downloader {
     pub fn new() -> Self {
         return Downloader {
-            base: DownloaderBase::new(),
+            base: Some(DownloaderBase::new()),
             http: None,
             ytdl: None,
             // downloaders: None,

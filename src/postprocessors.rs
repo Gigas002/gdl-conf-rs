@@ -249,7 +249,7 @@ impl Zip {
 
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(untagged)]
-pub enum Postprocessors {
+pub enum PostprocessorMapping {
     Classify(Classify),
     Compare(Compare),
     Exec(Exec),
@@ -264,92 +264,61 @@ pub enum Postprocessors {
 pub struct Postprocessor {
     pub name: String,
     #[serde(flatten)]
-    pub postprocessor: Postprocessors,
+    pub postprocessor: PostprocessorMapping,
 }
 
 impl Postprocessor {
-    pub fn new(name: String, postprocessor: Postprocessors) -> Self {
+    pub fn new(name: String, postprocessor: PostprocessorMapping) -> Self {
         return Postprocessor { name, postprocessor }
     }
 }
 
-pub fn deserialize_postprocessor_map<'de, D>(deserializer: D) -> Result<Option<HashMap<String, Postprocessor>>, D::Error> where D: Deserializer<'de>
-{
-    let mut result: HashMap<String, Postprocessor> = HashMap::new();
+#[derive(Serialize, Debug, PartialEq)]
+#[serde(untagged)]
+pub enum Postprocessors {
+    Postprocessors(HashMap<String, Postprocessor>),
+}
 
-    let postprocessor_root_value = Value::deserialize(deserializer)?;
-    let postprocessor_root_map = postprocessor_root_value.as_object().unwrap();
+impl <'de> Deserialize<'de> for Postprocessors {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error> where D: Deserializer<'de>,
+    {
+        let mut result: HashMap<String, Postprocessor> = HashMap::new();
 
-    for postprocessor_root_pair in postprocessor_root_map {
-        let postprocessor_name = postprocessor_root_pair.0;
-        let postprocessor_value = postprocessor_root_pair.1;
+        let postprocessor_root_value = Value::deserialize(deserializer)?;
+        let postprocessor_root_map = postprocessor_root_value.as_object().unwrap();
 
-        if postprocessor_name.ne("#") {
-            let postprocessor_map = postprocessor_value.as_object().unwrap();
-        
-            for postprocessor_map_pair in postprocessor_map {
-                let key = postprocessor_map_pair.0;
-                let value = postprocessor_map_pair.1;
+        for postprocessor_root_pair in postprocessor_root_map {
+            let postprocessor_name = postprocessor_root_pair.0;
+            let postprocessor_value = postprocessor_root_pair.1;
 
-                if key.to_string().eq("name") {
-                    let postprocessor_type = value.as_str().unwrap();
+            if postprocessor_name.ne("#") {
+                let postprocessor_map = postprocessor_value.as_object().unwrap();
+            
+                for postprocessor_map_pair in postprocessor_map {
+                    let key = postprocessor_map_pair.0;
+                    let value = postprocessor_map_pair.1;
 
-                    let pp = match postprocessor_type {
-                        "classify" => Some(Postprocessors::Classify(serde_json::from_value::<Classify>(postprocessor_value.clone()).unwrap())),
-                        "compare" => Some(Postprocessors::Compare(serde_json::from_value::<Compare>(postprocessor_value.clone()).unwrap())),
-                        "exec" => Some(Postprocessors::Exec(serde_json::from_value::<Exec>(postprocessor_value.clone()).unwrap())),
-                        "metadata" => Some(Postprocessors::Metadata(serde_json::from_value::<Metadata>(postprocessor_value.clone()).unwrap())),
-                        "mtime" => Some(Postprocessors::Mtime(serde_json::from_value::<Mtime>(postprocessor_value.clone()).unwrap())),
-                        "python" => Some(Postprocessors::Python(serde_json::from_value::<Python>(postprocessor_value.clone()).unwrap())),
-                        "ugoira" => Some(Postprocessors::Ugoira(serde_json::from_value::<Ugiora>(postprocessor_value.clone()).unwrap())),
-                        "zip" => Some(Postprocessors::Zip(serde_json::from_value::<Zip>(postprocessor_value.clone()).unwrap())),
-                        _ => None
-                    }.unwrap();
+                    if key.to_string().eq("name") {
+                        let postprocessor_type = value.as_str().unwrap();
 
-                    result.insert(postprocessor_name.to_string(), Postprocessor::new(postprocessor_type.to_string(), pp));
+                        let pp = match postprocessor_type {
+                            "classify" => Some(PostprocessorMapping::Classify(serde_json::from_value::<Classify>(postprocessor_value.clone()).unwrap())),
+                            "compare" => Some(PostprocessorMapping::Compare(serde_json::from_value::<Compare>(postprocessor_value.clone()).unwrap())),
+                            "exec" => Some(PostprocessorMapping::Exec(serde_json::from_value::<Exec>(postprocessor_value.clone()).unwrap())),
+                            "metadata" => Some(PostprocessorMapping::Metadata(serde_json::from_value::<Metadata>(postprocessor_value.clone()).unwrap())),
+                            "mtime" => Some(PostprocessorMapping::Mtime(serde_json::from_value::<Mtime>(postprocessor_value.clone()).unwrap())),
+                            "python" => Some(PostprocessorMapping::Python(serde_json::from_value::<Python>(postprocessor_value.clone()).unwrap())),
+                            "ugoira" => Some(PostprocessorMapping::Ugoira(serde_json::from_value::<Ugiora>(postprocessor_value.clone()).unwrap())),
+                            "zip" => Some(PostprocessorMapping::Zip(serde_json::from_value::<Zip>(postprocessor_value.clone()).unwrap())),
+                            _ => None
+                        }.unwrap();
+
+                        result.insert(postprocessor_name.to_string(), Postprocessor::new(postprocessor_type.to_string(), pp));
+                    }
                 }
             }
         }
+
+        return Ok(Postprocessors::Postprocessors(result));
     }
-
-    return Ok(Some(result));
 }
-
-
-// impl<'de> Deserialize<'de> for ConnectorTopics {
-//     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-//     where
-//         D: Deserializer<'de>,
-//     {
-//         struct ConnectorTopicsVisitor;
-
-//         impl<'de> serde::de::Visitor<'de> for ConnectorTopicsVisitor {
-//             type Value = ConnectorTopics;
-
-//             fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-//                 formatter.write_str("ConnectorTopics")
-//             }
-
-//             fn visit_map<V>(self, mut map: V) -> Result<Self::Value, V::Error>
-//             where
-//                 V: serde::de::MapAccess<'de>,
-//             {
-//                 if let Some(key) = map.next_key()? {
-//                     let value: Inner = map.next_value()?;
-//                     if let Some(_) = map.next_key::<&str>()? {
-//                         Err(serde::de::Error::duplicate_field("name"))
-//                     } else {
-//                         Ok(Self::Value {
-//                             name: key,
-//                             topics: value.topics,
-//                         })
-//                     }
-//                 } else {
-//                     Err(serde::de::Error::missing_field("name"))
-//                 }
-//             }
-//         }
-
-//         deserializer.deserialize_map(ConnectorTopicsVisitor {})
-//     }
-// }

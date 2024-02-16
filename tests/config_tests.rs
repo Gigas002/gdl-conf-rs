@@ -45,35 +45,35 @@ fn serde_config_test() {
     
     let cl = Postprocessor {
         name: "classify".to_string(),
-        postprocessor: Postprocessors::Classify(Classify::new()),
+        postprocessor: PostprocessorMapping::Classify(Classify::new()),
     };
     let co = Postprocessor {
         name: "compare".to_string(),
-        postprocessor: Postprocessors::Compare(Compare::new()),
+        postprocessor: PostprocessorMapping::Compare(Compare::new()),
     };
     let e = Postprocessor {
         name: "exec".to_string(),
-        postprocessor: Postprocessors::Exec(Exec::new()),
+        postprocessor: PostprocessorMapping::Exec(Exec::new()),
     };
     let m = Postprocessor {
         name: "metadata".to_string(),
-        postprocessor: Postprocessors::Metadata(Metadata::new()),
+        postprocessor: PostprocessorMapping::Metadata(Metadata::new()),
     };
     let mt = Postprocessor {
         name: "mtime".to_string(),
-        postprocessor: Postprocessors::Mtime(Mtime::new()),
+        postprocessor: PostprocessorMapping::Mtime(Mtime::new()),
     };
     let py = Postprocessor {
         name: "python".to_string(),
-        postprocessor: Postprocessors::Python(Python::new()),
+        postprocessor: PostprocessorMapping::Python(Python::new()),
     };
     let u = Postprocessor {
         name: "ugoira".to_string(),
-        postprocessor: Postprocessors::Ugoira(Ugiora::new()),
+        postprocessor: PostprocessorMapping::Ugoira(Ugiora::new()),
     };
     let z = Postprocessor {
         name: "zip".to_string(),
-        postprocessor: Postprocessors::Zip(Zip::new()),
+        postprocessor: PostprocessorMapping::Zip(Zip::new()),
     };
 
     let mut pps: HashMap<String, Postprocessor> = HashMap::new();
@@ -85,6 +85,7 @@ fn serde_config_test() {
     pps.insert("py".to_string(), py);
     pps.insert("ugo".to_string(), u);
     pps.insert("zi".to_string(), z);
+    let p: Postprocessors = Postprocessors::Postprocessors(pps);
 
     let mut extractor: Extractor = Extractor::new();
     let mut e_base = ExtractorBase::default();
@@ -93,7 +94,7 @@ fn serde_config_test() {
     extractor.base = Some(e_base);
 
     let mut config = Config::new();
-    config.postprocessor = Some(pps);
+    config.postprocessor = Some(p);
     config.cache = Some(Cache::new());
     config.downloader = Some(Downloader::new());
     config.output = Some(Output::new());
