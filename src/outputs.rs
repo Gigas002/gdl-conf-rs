@@ -4,7 +4,8 @@ use super::enums::*;
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Output {
-    pub mode: StringOrHashMap,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mode: Option<StringOrHashMap>,
     // str only
     #[serde(skip_serializing_if = "Option::is_none")]
     pub stdout: Option<String>,
@@ -14,24 +15,30 @@ pub struct Output {
     // str only
     #[serde(skip_serializing_if = "Option::is_none")]
     pub stderr: Option<String>,
-    pub shorten: bool,
-    pub colors: HashMap<String, String>,
-    pub ansi: bool,
-    pub skip: bool,
-    pub fallback: bool,
-    pub private: bool,
-    pub progress: BoolOrString,
-    pub log: PathOrLogConf,
     #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(flatten)]
+    pub shorten: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub colors: Option<HashMap<String, String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ansi: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub skip: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub fallback: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub private: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub progress: Option<BoolOrString>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub log: Option<PathOrLogConf>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub logfile: Option<PathOrLogConf>,
-    #[serde(flatten)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub unsupportedfile: Option<PathOrLogConf>,
-    #[serde(flatten)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub errorfile: Option<PathOrLogConf>,
-    pub num_to_str: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub num_to_str: Option<bool>,
 }
 
 impl Output {
@@ -41,22 +48,22 @@ impl Output {
         colors.insert("skip".to_string(), "2".to_string());
 
         return Output {
-            mode: StringOrHashMap::String("auto".to_string()),
+            mode: Some(StringOrHashMap::String("auto".to_string())),
             stdout: None,
             stdin: None,
             stderr: None,
-            shorten: true,
-            colors,
-            ansi: false,
-            skip: true,
-            fallback: true,
-            private: false,
-            progress: BoolOrString::Bool(true),
-            log: PathOrLogConf::Path(Path::String("[{name}][{levelname}] {message}".to_string())),
+            shorten: Some(true),
+            colors: Some(colors),
+            ansi: Some(false),
+            skip: Some(true),
+            fallback: Some(true),
+            private: Some(false),
+            progress: Some(BoolOrString::Bool(true)),
+            log: Some(PathOrLogConf::Path(Path::String("[{name}][{levelname}] {message}".to_string()))),
             logfile: None,
             unsupportedfile: None,
             errorfile: None,
-            num_to_str: false,
+            num_to_str: Some(false),
         };
     }
 }

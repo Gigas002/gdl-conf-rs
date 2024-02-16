@@ -3,37 +3,44 @@ use super::extractor::ExtractorBase;
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Sankaku {
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    pub base: ExtractorBase,
+    pub base: Option<ExtractorBase>,
     // TODO: enum
-    pub id_format: String,
-    pub refresh: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub id_format: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub refresh: Option<bool>,
 }
 
 impl Sankaku {
     pub fn new() -> Self {
         return Sankaku {
-            base: ExtractorBase::new(None, None),
-            id_format: "numeric".to_string(),
-            refresh: false
+            base: Some(ExtractorBase::new(None, None)),
+            id_format: Some("numeric".to_string()),
+            refresh: Some(false),
         };
     }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "kebab-case")]
 pub struct SankakuComplex {
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    pub base: ExtractorBase,
-    pub embeds: bool,
-    pub videos: bool,
+    pub base: Option<ExtractorBase>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub embeds: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub videos: Option<bool>,
 }
 
 impl SankakuComplex {
     pub fn new() -> Self {
         return SankakuComplex {
-            base: ExtractorBase::new(None, None),
-            embeds: false,
-            videos: true,
+            base: Some(ExtractorBase::new(None, None)),
+            embeds: Some(false),
+            videos: Some(true),
         }
     }
 }

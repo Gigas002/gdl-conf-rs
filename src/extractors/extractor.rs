@@ -96,10 +96,12 @@ pub struct ExtractorBase {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub archive_pragma: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub postprocessors: Option<ListStringOrListPostprocessor>,
+    // only list of strings
+    pub postprocessors: Option<Vec<String>>,
     // Needs example
+    // only list of strings
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub postprocessor_options: Option<ListStringOrListPostprocessor>,
+    pub postprocessor_options: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub retries: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -277,25 +279,37 @@ impl ExtractorBase {
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Extractor {
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    pub base: ExtractorBase,
+    pub base: Option<ExtractorBase>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub modules: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub module_sources: Option<Vec<Path>>,
-    #[serde(flatten)]
-    pub categories: Option<HashMap<String, Extractors>>,
+    // #[serde(skip_serializing_if = "Option::is_none")]
+    // #[serde(flatten)]
+    // pub categories: Option<HashMap<String, Extractors>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sankaku: Option<Sankaku>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sankakucomplex: Option<SankakuComplex>,
 }
 
 impl Extractor {
     pub fn new() -> Self {
-        let mut categories: HashMap<String, Extractors> = HashMap::new();
-        categories.insert("sankaku".to_string(), Extractors::Sankaku(Sankaku::new()));
-        categories.insert("sankakucomplex".to_string(), Extractors::SankakuComplex(SankakuComplex::new()));
+        // let mut categories: HashMap<String, Extractors> = HashMap::new();
+        // categories.insert("sankaku".to_string(), Extractors::Sankaku(Sankaku::new()));
+        // categories.insert("sankakucomplex".to_string(), Extractors::SankakuComplex(SankakuComplex::new()));
 
         return Extractor {
-            base: ExtractorBase::default(),
+            base: None, // ExtractorBase::default(),
             modules: None,
             module_sources: None,
-            categories: Some(categories),
+
+            sankaku: Some(Sankaku::new()),
+            sankakucomplex: Some(SankakuComplex::new()),
+            // categories: Some(categories),
         };
     }
 }

@@ -35,10 +35,12 @@ use gdl_conf_rs::{
     downloaders::*,
     outputs::*,
     postprocessors::*,
-    enums::*,
+    extractors::extractor::*,
 };
 #[test]
 fn serde_config_test() {
+    // let path = "tests/data/gdl_example.json";
+    // let path = "tests/data/gdl.json";
     let path = "tests/data/config.json";
     
     let cl = Postprocessor {
@@ -79,21 +81,29 @@ fn serde_config_test() {
     pps.insert("co".to_string(), co);
     pps.insert("exec".to_string(), e);
     pps.insert("meta".to_string(), m);
-    // pps.insert("mt".to_string(), mt);
+    pps.insert("mt".to_string(), mt);
     pps.insert("py".to_string(), py);
     pps.insert("ugo".to_string(), u);
     pps.insert("zi".to_string(), z);
+
+    let mut extractor: Extractor = Extractor::new();
+    let mut e_base = ExtractorBase::default();
+    e_base.postprocessors = Some(vec!["huing".to_string()]);
+    e_base.postprocessor_options = Some(vec!["pohuing".to_string()]);
+    extractor.base = Some(e_base);
 
     let mut config = Config::new();
     config.postprocessor = Some(pps);
     config.cache = Some(Cache::new());
     config.downloader = Some(Downloader::new());
     config.output = Some(Output::new());
-    config.extractor.base.postprocessors = Some(ListStringOrListPostprocessor::Postprocessor(vec![mt]));
-    config.extractor.base.postprocessor_options = Some(ListStringOrListPostprocessor::String(vec!["huing".to_string()]));
+    config.extractor = Some(extractor);
     
     let _ = serde_test_util::ser(&config, path).unwrap();
     let result = serde_test_util::de::<Config>(path).unwrap();
 
+    let path_serde = "tests/data/serde_config.json";
+    let _ = serde_test_util::ser(&result, path_serde).unwrap();
+    
     assert_eq!(config, result);
 }
