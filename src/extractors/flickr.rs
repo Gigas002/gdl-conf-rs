@@ -8,21 +8,23 @@ use crate::{
 pub struct Flickr {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    access_token: Option<String>,
+    pub access_token: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    access_token_secret: Option<String>,
+    pub access_token_secret: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    exif: Option<bool>,
+    pub exif: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    metadata: Option<BoolOrPath>,
+    pub metadata: Option<BoolOrPath>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    videos: Option<bool>,
+    pub videos: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    size_max: Option<StringOrInteger>,
-    api_key: Option<String>,
-    api_secret: Option<String>,
+    pub size_max: Option<StringOrInteger>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub api_key: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub api_secret: Option<String>,
 }
 
 impl Flickr {

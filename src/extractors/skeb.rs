@@ -8,12 +8,15 @@ use crate::{
 pub struct Skeb {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    article: Option<bool>,
-    sent_requests: Option<bool>,
-    thumbnails: Option<bool>,
-    search: Option<SkebSearch>,
+    pub article: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sent_requests: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub thumbnails: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub search: Option<SkebSearch>,
 }
 
 impl Skeb {
@@ -31,11 +34,12 @@ impl Skeb {
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct SkebSearch {
-    filters: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub filters: Option<StringOrList>,
 }
 
 impl SkebSearch {
-    pub fn new() -> SkebSearch {
+    pub fn new() -> Self {
         return SkebSearch {
             filters: Some(StringOrList::List(vec!["genre:art".to_string(), "genre:voice".to_string(), "genre:novel".to_string(),
                                                   "genre:video".to_string(), "genre:music".to_string(), "genre:correction".to_string()])),

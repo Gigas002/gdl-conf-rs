@@ -5,9 +5,9 @@ use super::extractor::ExtractorBase;
 pub struct Pixeldrain {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    api_key: Option<String>,
+    pub api_key: Option<String>,
 }
 
 impl Pixeldrain {

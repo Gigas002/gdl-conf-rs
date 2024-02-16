@@ -5,11 +5,13 @@ use super::extractor::ExtractorBase;
 pub struct Smugmug {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    videos: Option<bool>,
-    api_key: Option<String>,
-    api_secret: Option<String>,
+    pub videos: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub api_key: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub api_secret: Option<String>,
 }
 
 impl Smugmug {

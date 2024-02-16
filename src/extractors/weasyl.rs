@@ -5,10 +5,11 @@ use super::extractor::ExtractorBase;
 pub struct Weasyl {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    api_key: Option<String>,
-    metadata: Option<bool>,
+    pub api_key: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub metadata: Option<bool>,
 }
 
 impl Weasyl {

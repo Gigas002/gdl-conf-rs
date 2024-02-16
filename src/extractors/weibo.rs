@@ -8,12 +8,15 @@ use crate::{
 pub struct Weibo {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    include: Option<StringOrList>,
-    livephoto: Option<bool>,
-    retweets: Option<bool>,
-    videos: Option<bool>,
+    pub include: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub livephoto: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub retweets: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub videos: Option<bool>,
 }
 
 impl Weibo {

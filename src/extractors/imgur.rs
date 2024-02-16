@@ -8,10 +8,11 @@ use crate::{
 pub struct Imgur {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    client_id: Option<String>,
-    mp4: Option<BoolOrString>,
+    pub client_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mp4: Option<BoolOrString>,
 }
 
 impl Imgur {

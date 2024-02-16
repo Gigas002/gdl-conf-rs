@@ -9,12 +9,15 @@ use crate::{
 pub struct Mangadex {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    api_server: Option<String>,
-    api_parameters: Option<HashMap<String, String>>,
-    lang: Option<StringOrList>,
-    ratings: Option<Vec<String>>,
+    pub api_server: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub api_parameters: Option<HashMap<String, String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub lang: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ratings: Option<Vec<String>>,
 }
 
 impl Mangadex {

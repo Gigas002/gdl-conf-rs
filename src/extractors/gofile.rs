@@ -5,11 +5,13 @@ use super::extractor::ExtractorBase;
 pub struct Gofile {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    api_token: Option<String>,
-    website_token: Option<String>,
-    recursive: Option<bool>,
+    pub api_token: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub website_token: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub recursive: Option<bool>,
 }
 
 impl Gofile {

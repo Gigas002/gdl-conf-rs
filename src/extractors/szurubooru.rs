@@ -5,10 +5,11 @@ use super::extractor::ExtractorBase;
 pub struct Szurubooru {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    username: Option<String>,
-    token: Option<String>,
+    pub username: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub token: Option<String>,
 }
 
 impl Szurubooru {

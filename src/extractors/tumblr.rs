@@ -8,22 +8,35 @@ use crate::{
 pub struct Tumblr {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    avatar: Option<bool>,
-    date_min: Option<StringOrInteger>,
-    date_max: Option<StringOrInteger>,
-    external: Option<bool>,
-    inline: Option<bool>,
-    offset: Option<i64>,
-    original: Option<bool>,
-    ratelimit: Option<String>,
-    reblogs: Option<BoolOrString>,
-    posts: Option<StringOrList>,
-    fallback_delay: Option<f64>,
-    fallback_retries: Option<i64>,
-    api_key: Option<String>,
-    api_secret: Option<String>,
+    pub avatar: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub date_min: Option<StringOrInteger>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub date_max: Option<StringOrInteger>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub external: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub inline: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub offset: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub original: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ratelimit: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reblogs: Option<BoolOrString>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub posts: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub fallback_delay: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub fallback_retries: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub api_key: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub api_secret: Option<String>,
 }
 
 impl Tumblr {

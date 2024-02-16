@@ -5,11 +5,13 @@ use super::extractor::ExtractorBase;
 pub struct Misskey {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    access_token: Option<String>,
-    renotes: Option<bool>,
-    replies: Option<bool>,
+    pub access_token: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub renotes: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub replies: Option<bool>,
 }
 
 impl Misskey {

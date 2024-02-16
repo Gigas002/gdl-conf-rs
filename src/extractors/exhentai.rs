@@ -5,23 +5,23 @@ use super::extractor::ExtractorBase;
 pub struct Exhentai {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    domain: Option<String>,
+    pub domain: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    fallback_retries: Option<i64>,
+    pub fallback_retries: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    fav: Option<String>,
+    pub fav: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    gp: Option<String>,
+    pub gp: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    limits: Option<i64>,
+    pub limits: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    metadata: Option<bool>,
+    pub metadata: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    original: Option<bool>,
+    pub original: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    source: Option<String>,
+    pub source: Option<String>,
 }
 
 impl Exhentai {

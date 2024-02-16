@@ -5,9 +5,9 @@ use super::extractor::ExtractorBase;
 pub struct Moebooru {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pool: Option<MoebooruPool>,
+    pub pool: Option<MoebooruPool>,
 }
 
 impl Moebooru {
@@ -22,6 +22,7 @@ impl Moebooru {
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct MoebooruPool {
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub metadata: Option<bool>,
 }
 

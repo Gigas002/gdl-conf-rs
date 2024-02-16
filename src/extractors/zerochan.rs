@@ -5,9 +5,9 @@ use super::extractor::ExtractorBase;
 pub struct Zerochan {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    metadata: Option<bool>,
+    pub metadata: Option<bool>,
 }
 
 impl Zerochan {

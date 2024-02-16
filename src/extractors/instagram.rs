@@ -8,15 +8,21 @@ use crate::{
 pub struct Instagram {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    api: Option<String>,
-    include: Option<StringOrList>,
-    metadata: Option<bool>,
-    order_files: Option<String>,
-    order_posts: Option<String>,
-    previews: Option<bool>,
-    videos: Option<bool>,
+    pub api: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub include: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub metadata: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_files: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_posts: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub previews: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub videos: Option<bool>,
 }
 
 impl Instagram {

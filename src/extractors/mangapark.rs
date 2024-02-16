@@ -8,9 +8,9 @@ use crate::{
 pub struct Mangapark {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    source: Option<StringOrInteger>,
+    pub source: Option<StringOrInteger>,
 }
 
 impl Mangapark {

@@ -5,13 +5,13 @@ use super::extractor::ExtractorBase;
 pub struct Artstation {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    external: Option<bool>,
+    pub external: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    max_posts: Option<i64>,
+    pub max_posts: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    search: Option<ArtstationSearch>,
+    pub search: Option<ArtstationSearch>,
 }
 
 impl Artstation {

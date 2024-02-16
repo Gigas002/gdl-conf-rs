@@ -8,21 +8,32 @@ use crate::{
 pub struct Steamgriddb {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    animated: Option<bool>,
-    epilepsy: Option<bool>,
-    dimensions: Option<StringOrList>,
-    file_types: Option<StringOrList>,
-    download_fake_png: Option<bool>,
-    humor: Option<bool>,
-    languages: Option<StringOrList>,
-    nsfw: Option<bool>,
-    sort: Option<String>,
+    pub animated: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub epilepsy: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub dimensions: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file_types: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub download_fake_png: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub humor: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub languages: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub nsfw: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sort: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "static")]
-    static_asstes: Option<bool>,
-    styles: Option<StringOrList>,
-    untagged: Option<bool>,
+    pub static_asstes: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub styles: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub untagged: Option<bool>,
 }
 
 impl Steamgriddb {

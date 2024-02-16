@@ -5,10 +5,11 @@ use super::extractor::ExtractorBase;
 pub struct Twibooru {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    api_key: Option<String>,
-    filter: Option<i64>,
+    pub api_key: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub filter: Option<i64>,
 }
 
 impl Twibooru {

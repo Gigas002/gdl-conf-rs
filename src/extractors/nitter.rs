@@ -8,11 +8,13 @@ use crate::{
 pub struct Nitter {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    quoted: Option<bool>,
-    retweets: Option<bool>,
-    videos: Option<BoolOrString>,
+    pub quoted: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub retweets: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub videos: Option<BoolOrString>,
 }
 
 impl Nitter {

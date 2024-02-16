@@ -5,9 +5,9 @@ use super::extractor::ExtractorBase;
 pub struct Plurk {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    comments: Option<bool>,
+    pub comments: Option<bool>,
 }
 
 impl Plurk {

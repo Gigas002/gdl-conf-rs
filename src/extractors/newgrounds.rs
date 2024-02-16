@@ -8,11 +8,13 @@ use crate::{
 pub struct Newgrounds {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    flash: Option<bool>,
-    format: Option<String>,
-    include: Option<StringOrList>
+    pub flash: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub format: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub include: Option<StringOrList>
 }
 
 impl Newgrounds {

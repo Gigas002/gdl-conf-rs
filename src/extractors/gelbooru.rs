@@ -5,10 +5,11 @@ use super::extractor::ExtractorBase;
 pub struct Gelbooru {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    api_key: Option<String>,
-    user_id: Option<String>,
+    pub api_key: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user_id: Option<String>,
 }
 
 impl Gelbooru {

@@ -8,12 +8,15 @@ use crate::{
 pub struct Furaffinity {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    descriptions: Option<String>,
-    external: Option<bool>,
-    include: Option<StringOrList>,
-    layout: Option<String>,
+    pub descriptions: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub external: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub include: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub layout: Option<String>,
 }
 
 impl Furaffinity {

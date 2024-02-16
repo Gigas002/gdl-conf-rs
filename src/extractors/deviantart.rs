@@ -8,49 +8,51 @@ use crate::{
 pub struct Deviantart {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    auto_watch: Option<bool>,
+    pub auto_watch: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    auto_unwatch: Option<bool>,
+    pub auto_unwatch: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    comments: Option<bool>,
+    pub comments: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    extra: Option<bool>,
+    pub extra: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    flat: Option<bool>,
+    pub flat: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    folders: Option<bool>,
+    pub folders: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    group: Option<BoolOrString>,
+    pub group: Option<BoolOrString>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    include: Option<StringOrList>,
+    pub include: Option<StringOrList>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    intermediary: Option<bool>,
+    pub intermediary: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    journals: Option<String>,
+    pub journals: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    jwt: Option<bool>,
+    pub jwt: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    mature: Option<bool>,
+    pub mature: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    metadata: Option<bool>,
+    pub metadata: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    original: Option<BoolOrString>,
+    pub original: Option<BoolOrString>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pagination: Option<String>,
+    pub pagination: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    public: Option<bool>,
+    pub public: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    quality: Option<i64>,
+    pub quality: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    refresh_token: Option<String>,
+    pub refresh_token: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    wait_min: Option<i64>,
+    pub wait_min: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    avatar: Option<DeviantartAvatar>,
-    client_id: Option<String>,
-    client_secret: Option<String>,
+    pub avatar: Option<DeviantartAvatar>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub client_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub client_secret: Option<String>,
 }
 
 impl Deviantart {

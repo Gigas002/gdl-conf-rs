@@ -5,12 +5,15 @@ use super::extractor::ExtractorBase;
 pub struct Mastodon {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    access_token: Option<String>,
-    reblogs: Option<bool>,
-    replies: Option<bool>,
-    text_posts: Option<bool>,
+    pub access_token: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reblogs: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub replies: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub text_posts: Option<bool>,
 }
 
 impl Mastodon {

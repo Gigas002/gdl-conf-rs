@@ -8,16 +8,22 @@ use crate::{
 pub struct Ytdl {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    enabled: Option<bool>,
-    format: Option<String>,
-    generic: Option<bool>,
-    logging: Option<bool>,
-    module: Option<String>,
+    pub enabled: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub format: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub generic: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub logging: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub module: Option<String>,
     // raw-options: ,
-    cmdline_args: Option<StringOrList>,
-    config_file: Option<Path>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cmdline_args: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub config_file: Option<Path>,
 }
 
 impl Ytdl {

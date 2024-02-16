@@ -8,11 +8,11 @@ use crate::{
 pub struct Fanbox {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    embeds: Option<BoolOrString>,
+    pub embeds: Option<BoolOrString>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    metadata: Option<BoolOrPath>,
+    pub metadata: Option<BoolOrPath>,
 }
 
 impl Fanbox {

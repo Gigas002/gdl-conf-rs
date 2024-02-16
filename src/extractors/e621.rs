@@ -8,12 +8,12 @@ use crate::{
 pub struct E621 {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
     // this is the same as bool or str or vec<str>
-    metadata: Option<BoolOrPath>,
+    pub metadata: Option<BoolOrPath>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    threshold: Option<StringOrInteger>,
+    pub threshold: Option<StringOrInteger>,
 }
 
 impl E621 {

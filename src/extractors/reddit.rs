@@ -8,20 +8,31 @@ use crate::{
 pub struct Reddit {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    comments: Option<i64>,
-    morecomments: Option<bool>,
-    date_min: Option<StringOrInteger>,
-    date_max: Option<StringOrInteger>,
-    id_min: Option<String>,
-    id_max: Option<String>,
-    previews: Option<bool>,
-    recursion: Option<i64>,
-    refresh_token: Option<String>,
-    videos: Option<BoolOrString>,
-    client_id: Option<String>,
-    user_agent: Option<String>,
+    pub comments: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub morecomments: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub date_min: Option<StringOrInteger>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub date_max: Option<StringOrInteger>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub id_min: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub id_max: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub previews: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub recursion: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub refresh_token: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub videos: Option<BoolOrString>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub client_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user_agent: Option<String>,
 }
 
 impl Reddit {

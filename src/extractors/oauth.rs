@@ -5,12 +5,15 @@ use super::extractor::ExtractorBase;
 pub struct Oauth {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    browser: Option<bool>,
-    cache: Option<bool>,
-    host: Option<String>,
-    port: Option<i64>,
+    pub browser: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cache: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub host: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub port: Option<i64>,
 }
 
 impl Oauth {

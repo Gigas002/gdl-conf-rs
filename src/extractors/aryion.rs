@@ -5,9 +5,9 @@ use super::extractor::ExtractorBase;
 pub struct Aryion {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    recursive: Option<bool>,
+    pub recursive: Option<bool>,
 }
 
 impl Aryion {

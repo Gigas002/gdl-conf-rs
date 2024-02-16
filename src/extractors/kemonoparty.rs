@@ -8,16 +8,23 @@ use crate::{
 pub struct Kemonoparty {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    comments: Option<bool>,
-    duplicates: Option<bool>,
-    dms: Option<bool>,
-    favorites: Option<String>,
-    files: Option<Vec<String>>,
-    max_posts: Option<i64>,
-    metadata: Option<bool>,
-    revisions: Option<BoolOrString>,
+    pub comments: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub duplicates: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub dms: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub favorites: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub files: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_posts: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub metadata: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub revisions: Option<BoolOrString>,
 }
 
 impl Kemonoparty {

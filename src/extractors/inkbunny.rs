@@ -5,9 +5,9 @@ use super::extractor::ExtractorBase;
 pub struct Inkbunny {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    orderby: Option<String>,
+    pub orderby: Option<String>,
 }
 
 impl Inkbunny {

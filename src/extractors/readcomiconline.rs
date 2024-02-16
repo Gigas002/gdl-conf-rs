@@ -5,10 +5,11 @@ use super::extractor::ExtractorBase;
 pub struct Readcomiconline {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    captcha: Option<String>,
-    quality: Option<String>,
+    pub captcha: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub quality: Option<String>,
 }
 
 impl Readcomiconline {

@@ -8,9 +8,9 @@ use crate::{
 pub struct Redgifs {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    format: Option<StringOrList>,
+    pub format: Option<StringOrList>,
 }
 
 impl Redgifs {

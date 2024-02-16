@@ -5,9 +5,9 @@ use super::extractor::ExtractorBase;
 pub struct Bbc {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    width: Option<i64>,
+    pub width: Option<i64>,
 }
 
 impl Bbc {

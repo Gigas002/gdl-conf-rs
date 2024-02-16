@@ -8,30 +8,51 @@ use crate::{
 pub struct Twitter {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    ads: Option<bool>,
-    cards: Option<BoolOrString>,
-    cards_blacklist: Option<Vec<String>>,
-    conversations: Option<BoolOrString>,
-    csrf: Option<String>,
-    expand: Option<bool>,
-    include: Option<StringOrList>,
-    transform: Option<bool>,
-    tweet_endpoint: Option<String>,
-    size: Option<Vec<String>>,
-    logout: Option<bool>,
-    pinned: Option<bool>,
-    quoted: Option<bool>,
-    ratelimit: Option<String>,
-    replies: Option<bool>,
-    retweets: Option<bool>,
-    timeline: Option<TwitterTimeline>,
-    text_tweets: Option<bool>,
-    twitpic: Option<bool>,
-    unique: Option<bool>,
-    users: Option<String>,
-    videos: Option<BoolOrString>,
+    pub ads: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cards: Option<BoolOrString>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cards_blacklist: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub conversations: Option<BoolOrString>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub csrf: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub expand: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub include: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub transform: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tweet_endpoint: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub size: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub logout: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pinned: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub quoted: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ratelimit: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub replies: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub retweets: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub timeline: Option<TwitterTimeline>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub text_tweets: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub twitpic: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub unique: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub users: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub videos: Option<BoolOrString>,
 }
 
 impl Twitter {
@@ -67,7 +88,8 @@ impl Twitter {
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct TwitterTimeline {
-    strategy: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub strategy: Option<String>,
 }
 
 impl TwitterTimeline {

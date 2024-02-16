@@ -5,9 +5,9 @@ use super::extractor::ExtractorBase;
 pub struct Derpibooru {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    filter: Option<i64>,
+    pub filter: Option<i64>,
 }
 
 impl Derpibooru {

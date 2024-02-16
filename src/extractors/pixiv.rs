@@ -8,18 +8,27 @@ use crate::{
 pub struct Pixiv {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    base: Option<ExtractorBase>,
+    pub base: Option<ExtractorBase>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    include: Option<StringOrList>,
-    refresh_token: Option<String>,
-    embeds: Option<bool>,
-    novel: Option<PixivNovel>,
-    metadata: Option<bool>,
-    metadata_bookmark: Option<bool>,
-    work: Option<PixivWork>,
-    tags: Option<String>,
-    ugoira: Option<bool>,
-    max_posts: Option<i64>,
+    pub include: Option<StringOrList>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub refresh_token: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub embeds: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub novel: Option<PixivNovel>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub metadata: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub metadata_bookmark: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub work: Option<PixivWork>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ugoira: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_posts: Option<i64>,
 }
 
 impl Pixiv {
@@ -43,6 +52,7 @@ impl Pixiv {
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct PixivNovel {
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub full_series: Option<bool>,
 }
 
@@ -57,6 +67,7 @@ impl PixivNovel {
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct PixivWork {
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub related: Option<bool>,
 }
 
