@@ -1,3 +1,4 @@
 /target
-/tests/data
 /gallery_dl_docs
+/tests/data/*
+!/tests/data/de_*.json
