@@ -7,6 +7,7 @@ use serde::{
 use serde_json::Value;
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
 pub struct Classify {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mapping: Option<HashMap<String, Vec<String>>>,
@@ -21,6 +22,7 @@ impl Classify {
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
 pub struct Compare {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub action: Option<String>,
@@ -41,6 +43,7 @@ impl Compare {
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
 pub struct Exec {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub archive: Option<Path>,
@@ -133,6 +136,7 @@ impl Metadata {
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
 pub struct Mtime {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub event: Option<String>,
@@ -153,6 +157,7 @@ impl Mtime {
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
 pub struct Python {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub archive: Option<Path>,
@@ -261,6 +266,7 @@ pub enum PostprocessorMapping {
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
 pub struct Postprocessor {
     pub name: String,
     #[serde(flatten)]
