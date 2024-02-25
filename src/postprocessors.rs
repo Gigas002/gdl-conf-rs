@@ -320,3 +320,68 @@ impl <'de> Deserialize<'de> for Postprocessor {
         return Ok(Postprocessor::new(name.unwrap(), postprocessor.unwrap()));
     }
 }
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct RootPostprocessor {
+    #[serde(flatten)]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub postprocessor: Option<HashMap<String, StringOrPostprocessor>>,
+}
+
+impl RootPostprocessor {
+    pub fn default() -> Self {
+        let classify = Postprocessor {
+            name: Some("classify".to_string()),
+            postprocessor: Some(Postprocessors::Classify(Classify::new())),
+        };
+        let compare = Postprocessor {
+            name: Some("compare".to_string()),
+            postprocessor: Some(Postprocessors::Compare(Compare::new())),
+        };
+        let exec = Postprocessor {
+            name: Some("exec".to_string()),
+            postprocessor: Some(Postprocessors::Exec(Exec::new())),
+        };
+        let metadata = Postprocessor {
+            name: Some("metadata".to_string()),
+            postprocessor: Some(Postprocessors::Metadata(Metadata::new())),
+        };
+        let mtime = Postprocessor {
+            name: Some("mtime".to_string()),
+            postprocessor: Some(Postprocessors::Mtime(Mtime::new())),
+        };
+        let python = Postprocessor {
+            name: Some("python".to_string()),
+            postprocessor: Some(Postprocessors::Python(Python::new())),
+        };
+        let ugoira = Postprocessor {
+            name: Some("ugoira".to_string()),
+            postprocessor: Some(Postprocessors::Ugoira(Ugiora::new())),
+        };
+        let zip = Postprocessor {
+            name: Some("zip".to_string()),
+            postprocessor: Some(Postprocessors::Zip(Zip::new())),
+        };
+    
+        let mut postprocessors: HashMap<String, StringOrPostprocessor> = HashMap::new();
+        postprocessors.insert("classify".to_string(), StringOrPostprocessor::Postprocessor(classify));
+        postprocessors.insert("compare".to_string(), StringOrPostprocessor::Postprocessor(compare));
+        postprocessors.insert("exec".to_string(), StringOrPostprocessor::Postprocessor(exec));
+        postprocessors.insert("metadata".to_string(), StringOrPostprocessor::Postprocessor(metadata));
+        postprocessors.insert("mtime".to_string(), StringOrPostprocessor::Postprocessor(mtime));
+        postprocessors.insert("python".to_string(), StringOrPostprocessor::Postprocessor(python));
+        postprocessors.insert("ugoira".to_string(), StringOrPostprocessor::Postprocessor(ugoira));
+        postprocessors.insert("zip".to_string(), StringOrPostprocessor::Postprocessor(zip));
+    
+    
+        return RootPostprocessor {
+            postprocessor: Some(postprocessors),
+        }
+    }
+    pub fn new() -> Self {
+        return RootPostprocessor {
+            postprocessor: None,
+        }
+    }
+}

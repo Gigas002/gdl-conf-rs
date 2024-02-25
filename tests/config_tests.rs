@@ -27,7 +27,6 @@ pub mod serde_test_util {
     }
 }
 
-use std::collections::HashMap;
 use gdl_conf_rs::{
     cache::*,
     config::*,
@@ -35,7 +34,6 @@ use gdl_conf_rs::{
     extractors::extractor::*,
     outputs::*,
     postprocessors::*,
-    enums::*,
 };
 
 // TODO: empty classes, nulls, specific extractors, alt values, simplify to use one test for each struct
@@ -158,51 +156,7 @@ fn de_config_test() {
 fn serde_config_test() {
     let path = "tests/data/serde_config.json";
     
-    let cl = Postprocessor {
-        name: Some("classify".to_string()),
-        postprocessor: Some(Postprocessors::Classify(Classify::new())),
-    };
-    let co = Postprocessor {
-        name: Some("compare".to_string()),
-        postprocessor: Some(Postprocessors::Compare(Compare::new())),
-    };
-    let e = Postprocessor {
-        name: Some("exec".to_string()),
-        postprocessor: Some(Postprocessors::Exec(Exec::new())),
-    };
-    let m = Postprocessor {
-        name: Some("metadata".to_string()),
-        postprocessor: Some(Postprocessors::Metadata(Metadata::new())),
-    };
-    let mt = Postprocessor {
-        name: Some("mtime".to_string()),
-        postprocessor: Some(Postprocessors::Mtime(Mtime::new())),
-    };
-    let py = Postprocessor {
-        name: Some("python".to_string()),
-        postprocessor: Some(Postprocessors::Python(Python::new())),
-    };
-    let u = Postprocessor {
-        name: Some("ugoira".to_string()),
-        postprocessor: Some(Postprocessors::Ugoira(Ugiora::new())),
-    };
-    let z = Postprocessor {
-        name: Some("zip".to_string()),
-        postprocessor: Some(Postprocessors::Zip(Zip::new())),
-    };
-
-    let mut pps: HashMap<String, StringOrPostprocessor> = HashMap::new();
-    pps.insert("cla".to_string(), StringOrPostprocessor::Postprocessor(cl));
-    pps.insert("co".to_string(), StringOrPostprocessor::Postprocessor(co));
-    pps.insert("exec".to_string(), StringOrPostprocessor::Postprocessor(e));
-    pps.insert("meta".to_string(), StringOrPostprocessor::Postprocessor(m));
-    pps.insert("mt".to_string(), StringOrPostprocessor::Postprocessor(mt));
-    pps.insert("py".to_string(), StringOrPostprocessor::Postprocessor(py));
-    pps.insert("ugo".to_string(), StringOrPostprocessor::Postprocessor(u));
-    pps.insert("zi".to_string(), StringOrPostprocessor::Postprocessor(z));
-
-    let mut config = Config::default();
-    config.postprocessor = Some(pps);
+    let config = Config::default();
     
     let _ = serde_test_util::ser(&config, path).unwrap();
     let result = serde_test_util::de::<Config>(path).unwrap();
@@ -302,8 +256,7 @@ fn serde_output_test() {
 fn ser_postprocessor_test() {
     let path = "tests/data/ser_postprocessor.json";
 
-    let zip = Postprocessors::Zip(Zip::new());
-    let postprocessor = Postprocessor::new("zip".to_string(), zip);
+    let postprocessor = RootPostprocessor::default();
 
     let _ = serde_test_util::ser(&postprocessor, path).unwrap();
 }
@@ -327,11 +280,10 @@ fn de_postprocessor_test() {
 fn serde_postprocessor_test() {
     let path = "tests/data/serde_postprocessor.json";
 
-    let zip = Postprocessors::Zip(Zip::new());
-    let postprocessor = Postprocessor::new("zip".to_string(), zip);
+    let postprocessor = RootPostprocessor::default();
 
     let _ = serde_test_util::ser(&postprocessor, path).unwrap();
-    let result = serde_test_util::de::<Postprocessor>(path).unwrap();
+    let result = serde_test_util::de::<RootPostprocessor>(path).unwrap();
 
     assert_eq!(postprocessor, result);
 }

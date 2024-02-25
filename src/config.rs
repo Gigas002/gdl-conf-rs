@@ -1,11 +1,10 @@
-use std::collections::HashMap;
-
 use super::{
     extractors::extractor::Extractor,
     outputs::Output,
     downloaders::Downloader,
     cache::Cache,
-    enums::*,
+    postprocessors::RootPostprocessor,
+    enums::Path,
 };
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -17,9 +16,8 @@ pub struct Config {
     pub downloader: Option<Downloader>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub output: Option<Output>,
-    // TODO: consider seprating into class...
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub postprocessor: Option<HashMap<String, StringOrPostprocessor>>,
+    pub postprocessor: Option<RootPostprocessor>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub globals: Option<Path>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -40,8 +38,7 @@ impl Config {
             extractor: Some(Extractor::default()),
             downloader: Some(Downloader::default()),
             output: Some(Output::default()),
-            // TODO: default ctor
-            postprocessor: None,
+            postprocessor: Some(RootPostprocessor::default()),
             globals: None,
             cache: Some(Cache::default()),
             format_separator: Some("/".to_string()),
