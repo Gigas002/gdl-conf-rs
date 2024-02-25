@@ -8,12 +8,28 @@ pub struct GelbooruV01 {
     pub base: Option<BooruExtractor>,
 }
 
+impl GelbooruV01 {
+    pub fn new() -> Self {
+        return GelbooruV01 {
+            base: Some(BooruExtractor::new()),
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename = "gelbooru_v02")]
 pub struct GelbooruV02 {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<BooruExtractor>,
+}
+
+impl GelbooruV02 {
+    pub fn new() -> Self {
+        return GelbooruV02 {
+            base: Some(BooruExtractor::new()),
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -31,7 +47,7 @@ pub struct Gelbooru {
 impl Gelbooru {
     pub fn new() -> Self {
         return Gelbooru {
-            base: None,
+            base: Some(GelbooruV02::new()),
             api_key: None,
             user_id: None,
         }

@@ -28,9 +28,13 @@ pub struct Kemonoparty {
 }
 
 impl Kemonoparty {
-    pub fn new() -> Self {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = username;
+        base.password = password;
+
         return Kemonoparty {
-            base: None,
+            base: Some(base),
             comments: Some(false),
             duplicates: Some(false),
             dms: Some(false),

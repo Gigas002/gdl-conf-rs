@@ -56,9 +56,13 @@ pub struct Twitter {
 }
 
 impl Twitter {
-    pub fn new() -> Self {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = username;
+        base.password = password;
+
         return Twitter {
-            base: None,
+            base: Some(base),
             ads: Some(true),
             cards: Some(BoolOrString::Bool(false)),
             cards_blacklist: None,

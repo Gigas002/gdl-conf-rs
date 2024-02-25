@@ -15,7 +15,7 @@ pub struct Szurubooru {
 impl Szurubooru {
     pub fn new() -> Self {
         return Szurubooru {
-            base: None,
+            base: Some(BooruExtractor::new()),
             username: None,
             token: None,
         }

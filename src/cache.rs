@@ -9,7 +9,7 @@ pub struct Cache {
 }
 
 impl Cache {
-    pub fn new() -> Self {
+    pub fn default() -> Self {
         let path = match consts::OS {
             "windows" => "~",
             _ => "~/.cache",
@@ -18,5 +18,11 @@ impl Cache {
         return Cache {
             file: Some(Path::String(format!("{path}/gallery-dl/cache.sqlite3"))),
         };
+    }
+
+    pub fn new() -> Self {
+        return Cache {
+            file: None,
+        }
     }
 }

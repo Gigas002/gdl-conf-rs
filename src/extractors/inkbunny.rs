@@ -11,9 +11,13 @@ pub struct Inkbunny {
 }
 
 impl Inkbunny {
-    pub fn new() -> Self {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = username;
+        base.password = password;
+
         return Inkbunny {
-            base: None,
+            base: Some(base),
             orderby: Some("create_datetime".to_string()),
         }
     }

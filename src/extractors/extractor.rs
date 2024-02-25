@@ -237,11 +237,11 @@ impl ExtractorBase {
             proxy: None,
             source_address: None,
             user_agent: None,
-            browser: browser,
+            browser,
             referer: None,
             headers: None,
             ciphers: None,
-            tls12: tls12,
+            tls12,
             keywords: None,
             keywords_default: None,
             metadata_url: None,
@@ -297,7 +297,7 @@ pub struct Extractor {
 }
 
 impl Extractor {
-    pub fn new() -> Self {
+    pub fn default() -> Self {
         // let mut categories: HashMap<String, Extractors> = HashMap::new();
         // categories.insert("sankaku".to_string(), Extractors::Sankaku(Sankaku::new()));
         // categories.insert("sankakucomplex".to_string(), Extractors::SankakuComplex(SankakuComplex::new()));
@@ -308,9 +308,20 @@ impl Extractor {
             module_sources: None,
             // categories: Some(categories),
             
-            sankaku: Some(Sankaku::new()),
+            sankaku: Some(Sankaku::new(None, None)),
             sankakucomplex: Some(Sankakucomplex::new()),
         };
+    }
+
+    pub fn new() -> Self {
+        return Extractor {
+            base: Some(ExtractorBase::default()),
+            modules: None,
+            module_sources: None,
+
+            sankaku: None,
+            sankakucomplex: None,
+        }
     }
 }
 
@@ -331,12 +342,28 @@ pub struct _2ch {
     pub base: Option<ExtractorBase>,
 }
 
+impl _2ch {
+    pub fn new() -> Self {
+        return _2ch {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename = "2chan")]
 pub struct _2chan {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl _2chan {
+    pub fn new() -> Self {
+        return _2chan {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -347,12 +374,28 @@ pub struct _2chen {
     pub base: Option<ExtractorBase>,
 }
 
+impl _2chen {
+    pub fn new() -> Self {
+        return _2chen {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename = "35photo")]
 pub struct _35photo {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl _35photo {
+    pub fn new() -> Self {
+        return _35photo {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -363,12 +406,28 @@ pub struct _4archive {
     pub base: Option<ExtractorBase>,
 }
 
+impl _4archive {
+    pub fn new() -> Self {
+        return _4archive {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename = "4chan")]
 pub struct _4chan {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl _4chan {
+    pub fn new() -> Self {
+        return _4chan {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -379,12 +438,28 @@ pub struct _4chanarchives {
     pub base: Option<ExtractorBase>,
 }
 
+impl _4chanarchives {
+    pub fn new() -> Self {
+        return _4chanarchives {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename = "500px")]
 pub struct _500px {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl _500px {
+    pub fn new() -> Self {
+        return _500px {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -395,12 +470,29 @@ pub struct _8chan {
     pub base: Option<ExtractorBase>,
 }
 
+
+impl _8chan {
+    pub fn new() -> Self {
+        return _8chan {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename = "8muses")]
 pub struct _8muses {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl _8muses {
+    pub fn new() -> Self {
+        return _8muses {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -411,12 +503,32 @@ pub struct Bluesky {
     pub base: Option<ExtractorBase>,
 }
 
+impl Bluesky {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = username;
+        base.password = password;
+
+        return Bluesky {
+            base: Some(base),
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Chevereto {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Chevereto {
+    pub fn new() -> Self {
+        return Chevereto {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -427,12 +539,28 @@ pub struct Desktopography {
     pub base: Option<ExtractorBase>,
 }
 
+impl Desktopography {
+    pub fn new() -> Self {
+        return Desktopography {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Directlink {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Directlink {
+    pub fn new() -> Self {
+        return Directlink {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -443,12 +571,28 @@ pub struct Erome {
     pub base: Option<ExtractorBase>,
 }
 
+impl Erome {
+    pub fn new() -> Self {
+        return Erome {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Fanleaks {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Fanleaks {
+    pub fn new() -> Self {
+        return Fanleaks {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -459,12 +603,28 @@ pub struct Fantia {
     pub base: Option<ExtractorBase>,
 }
 
+impl Fantia {
+    pub fn new() -> Self {
+        return Fantia {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Fapachi {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Fapachi {
+    pub fn new() -> Self {
+        return Fapachi {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -475,12 +635,28 @@ pub struct Fapello {
     pub base: Option<ExtractorBase>,
 }
 
+impl Fapello {
+    pub fn new() -> Self {
+        return Fapello {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Foolfuuka {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Foolfuuka {
+    pub fn new() -> Self {
+        return Foolfuuka {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -491,12 +667,28 @@ pub struct Foolslide {
     pub base: Option<ExtractorBase>,
 }
 
+impl Foolslide {
+    pub fn new() -> Self {
+        return Foolslide {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Hatenablog {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Hatenablog {
+    pub fn new() -> Self {
+        return Hatenablog {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -507,12 +699,28 @@ pub struct Hotleak {
     pub base: Option<ExtractorBase>,
 }
 
+impl Hotleak {
+    pub fn new() -> Self {
+        return Hotleak {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Imagebam {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Imagebam {
+    pub fn new() -> Self {
+        return Imagebam {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -523,12 +731,28 @@ pub struct Imagefap {
     pub base: Option<ExtractorBase>,
 }
 
+impl Imagefap {
+    pub fn new() -> Self {
+        return Imagefap {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Imagehosts {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Imagehosts {
+    pub fn new() -> Self {
+        return Imagehosts {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -539,12 +763,32 @@ pub struct Imgbb {
     pub base: Option<ExtractorBase>,
 }
 
+impl Imgbb {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = username;
+        base.password = password;
+
+        return Imgbb {
+            base: Some(base),
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Imgbox {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Imgbox {
+    pub fn new() -> Self {
+        return Imgbox {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -555,12 +799,28 @@ pub struct Itchio {
     pub base: Option<ExtractorBase>,
 }
 
+impl Itchio {
+    pub fn new() -> Self {
+        return Itchio {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Jschan {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Jschan {
+    pub fn new() -> Self {
+        return Jschan {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -571,12 +831,28 @@ pub struct Kabeuchi {
     pub base: Option<ExtractorBase>,
 }
 
+impl Kabeuchi {
+    pub fn new() -> Self {
+        return Kabeuchi {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Keenspot {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Keenspot {
+    pub fn new() -> Self {
+        return Keenspot {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -587,12 +863,28 @@ pub struct Lexica {
     pub base: Option<ExtractorBase>,
 }
 
+impl Lexica {
+    pub fn new() -> Self {
+        return Lexica {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Lightroom {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Lightroom {
+    pub fn new() -> Self {
+        return Lightroom {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -603,12 +895,28 @@ pub struct Livedoor {
     pub base: Option<ExtractorBase>,
 }
 
+impl Livedoor {
+    pub fn new() -> Self {
+        return Livedoor {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Lynxchan {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Lynxchan {
+    pub fn new() -> Self {
+        return Lynxchan {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -619,12 +927,32 @@ pub struct Mangoxo {
     pub base: Option<ExtractorBase>,
 }
 
+impl Mangoxo {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = username;
+        base.password = password;
+
+        return Mangoxo {
+            base: Some(base),
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Myportfolio {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Myportfolio {
+    pub fn new() -> Self {
+        return Myportfolio {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -635,12 +963,28 @@ pub struct Nozomi {
     pub base: Option<ExtractorBase>,
 }
 
+impl Nozomi {
+    pub fn new() -> Self {
+        return Nozomi {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Photovogue {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Photovogue {
+    pub fn new() -> Self {
+        return Photovogue {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -651,12 +995,28 @@ pub struct Picarto {
     pub base: Option<ExtractorBase>,
 }
 
+impl Picarto {
+    pub fn new() -> Self {
+        return Picarto {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Piczel {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Piczel {
+    pub fn new() -> Self {
+        return Piczel {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -667,12 +1027,28 @@ pub struct Pixnet {
     pub base: Option<ExtractorBase>,
 }
 
+impl Pixnet {
+    pub fn new() -> Self {
+        return Pixnet {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Poipiku {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Poipiku {
+    pub fn new() -> Self {
+        return Poipiku {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -683,12 +1059,28 @@ pub struct Poringa {
     pub base: Option<ExtractorBase>,
 }
 
+impl Poringa {
+    pub fn new() -> Self {
+        return Poringa {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Pornhub {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Pornhub {
+    pub fn new() -> Self {
+        return Pornhub {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -699,12 +1091,28 @@ pub struct Seiga {
     pub base: Option<ExtractorBase>,
 }
 
+impl Seiga {
+    pub fn new() -> Self {
+        return Seiga {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Sexcom {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Sexcom {
+    pub fn new() -> Self {
+        return Sexcom {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -715,12 +1123,28 @@ pub struct Shimmie2 {
     pub base: Option<ExtractorBase>,
 }
 
+impl Shimmie2 {
+    pub fn new() -> Self {
+        return Shimmie2 {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Shopify {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Shopify {
+    pub fn new() -> Self {
+        return Shopify {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -731,12 +1155,28 @@ pub struct Slickpic {
     pub base: Option<ExtractorBase>,
 }
 
+impl Slickpic {
+    pub fn new() -> Self {
+        return Slickpic {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Soundgasm {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Soundgasm {
+    pub fn new() -> Self {
+        return Soundgasm {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -747,12 +1187,32 @@ pub struct Speakerdeck {
     pub base: Option<ExtractorBase>,
 }
 
+impl Speakerdeck {
+    pub fn new() -> Self {
+        return Speakerdeck {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Subscribestar {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Subscribestar {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = username;
+        base.password = password;
+
+        return Subscribestar {
+            base: Some(base),
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -763,12 +1223,32 @@ pub struct Tapas {
     pub base: Option<ExtractorBase>,
 }
 
+impl Tapas {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = username;
+        base.password = password;
+
+        return Tapas {
+            base: Some(base),
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Toyhouse {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Toyhouse {
+    pub fn new() -> Self {
+        return Toyhouse {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -779,12 +1259,28 @@ pub struct Uploadir {
     pub base: Option<ExtractorBase>,
 }
 
+impl Uploadir {
+    pub fn new() -> Self {
+        return Uploadir {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Urlshortener {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Urlshortener {
+    pub fn new() -> Self {
+        return Urlshortener {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -795,12 +1291,28 @@ pub struct Vanillarock {
     pub base: Option<ExtractorBase>,
 }
 
+impl Vanillarock {
+    pub fn new() -> Self {
+        return Vanillarock {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Vichan {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Vichan {
+    pub fn new() -> Self {
+        return Vichan {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -811,12 +1323,28 @@ pub struct Vipergifs {
     pub base: Option<ExtractorBase>,
 }
 
+impl Vipergifs {
+    pub fn new() -> Self {
+        return Vipergifs {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Vk {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Vk {
+    pub fn new() -> Self {
+        return Vk {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -827,12 +1355,28 @@ pub struct Wallpapercave {
     pub base: Option<ExtractorBase>,
 }
 
+impl Wallpapercave {
+    pub fn new() -> Self {
+        return Wallpapercave {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Warosu {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Warosu {
+    pub fn new() -> Self {
+        return Warosu {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -843,12 +1387,28 @@ pub struct Webmshare {
     pub base: Option<ExtractorBase>,
 }
 
+impl Webmshare {
+    pub fn new() -> Self {
+        return Webmshare {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Wikiart {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Wikiart {
+    pub fn new() -> Self {
+        return Wikiart {
+            base: None,
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -859,10 +1419,26 @@ pub struct Wikimedia {
     pub base: Option<ExtractorBase>,
 }
 
+impl Wikimedia {
+    pub fn new() -> Self {
+        return Wikimedia {
+            base: None,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Xhamster {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
+}
+
+impl Xhamster {
+    pub fn new() -> Self {
+        return Xhamster {
+            base: None,
+        }
+    }
 }

@@ -33,6 +33,14 @@ pub struct Comicvine {
     pub base: Option<BooruExtractor>,
 }
 
+impl Comicvine {
+    pub fn new() -> Self {
+        return Comicvine {
+            base: Some(BooruExtractor::new()),
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Philomena {
@@ -41,10 +49,26 @@ pub struct Philomena {
     pub base: Option<BooruExtractor>,
 }
 
+impl Philomena {
+    pub fn new() -> Self {
+        return Philomena {
+            base: Some(BooruExtractor::new()),
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Rule34us {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<BooruExtractor>,
+}
+
+impl Rule34us {
+    pub fn new() -> Self {
+        return Rule34us {
+            base: Some(BooruExtractor::new()),
+        }
+    }
 }

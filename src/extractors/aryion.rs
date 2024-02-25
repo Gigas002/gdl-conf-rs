@@ -11,9 +11,13 @@ pub struct Aryion {
 }
 
 impl Aryion {
-    pub fn new() -> Self {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = username;
+        base.password = password;
+
         return Aryion {
-            base: None,
+            base: Some(base),
             recursive: Some(true),
         }
     }

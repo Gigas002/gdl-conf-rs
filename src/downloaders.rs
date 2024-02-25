@@ -140,12 +140,20 @@ pub struct Downloader {
 }
 
 impl Downloader {
-    pub fn new() -> Self {
+    pub fn default() -> Self {
         return Downloader {
             base: Some(DownloaderBase::new()),
             http: None,
             ytdl: None,
             // downloaders: None,
+        };
+    }
+
+    pub fn new() -> Self {
+        return Downloader {
+            base: None,
+            http: None,
+            ytdl: None,
         };
     }
 }

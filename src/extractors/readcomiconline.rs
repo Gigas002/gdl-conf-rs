@@ -15,7 +15,7 @@ pub struct Readcomiconline {
 impl Readcomiconline {
     pub fn new() -> Self {
         return Readcomiconline {
-            base: None,
+            base: Some(MangaExtractor::new()),
             captcha: Some("stop".to_string()),
             quality: Some("auto".to_string()),
         }

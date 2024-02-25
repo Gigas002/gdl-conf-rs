@@ -13,7 +13,7 @@ pub struct Moebooru {
 impl Moebooru {
     pub fn new() -> Self {
         return Moebooru {
-            base: None,
+            base: Some(BooruExtractor::new()),
             pool: Some(MoebooruPool::new()),
         }
     }
@@ -40,4 +40,12 @@ pub struct _3dbooru {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<Moebooru>,
+}
+
+impl _3dbooru {
+    pub fn new() -> Self {
+        return _3dbooru {
+            base: Some(Moebooru::new()),
+        }
+    }
 }

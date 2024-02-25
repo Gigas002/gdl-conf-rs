@@ -15,7 +15,7 @@ pub struct Twibooru {
 impl Twibooru {
     pub fn new() -> Self {
         return Twibooru {
-            base: None,
+            base: Some(BooruExtractor::new()),
             api_key: None,
             filter: Some(2),
         }

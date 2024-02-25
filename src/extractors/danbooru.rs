@@ -21,9 +21,13 @@ pub struct Danbooru {
 }
 
 impl Danbooru {
-    pub fn new() -> Self {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = username;
+        base.password = password;
+
         return Danbooru {
-            base: None,
+            base: Some(base),
             external: Some(false),
             ugoira: Some(false),
             metadata: Some(BoolOrPath::Bool(false)),

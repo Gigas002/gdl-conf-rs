@@ -44,7 +44,7 @@ use gdl_conf_rs::{
 fn ser_extractor_test() {
     let path = "tests/data/ser_extractor.json";
 
-    let extractor = Extractor::new();
+    let extractor = Extractor::default();
 
     let _ = serde_test_util::ser(&extractor, path).unwrap();
 }
@@ -68,7 +68,7 @@ fn de_extractor_test() {
 fn serde_extractor_test() {
     let path = "tests/data/serde_extractor.json";
 
-    let extractor = Extractor::new();
+    let extractor = Extractor::default();
 
     let _ = serde_test_util::ser(&extractor, path).unwrap();
     let result = serde_test_util::de::<Extractor>(path).unwrap();
@@ -80,7 +80,7 @@ fn serde_extractor_test() {
 fn ser_cache_test() {
     let path = "tests/data/ser_cache.json";
 
-    let cache = Cache::new();
+    let cache = Cache::default();
 
     let _ = serde_test_util::ser(&cache, path).unwrap();
 }
@@ -104,7 +104,7 @@ fn de_cache_test() {
 fn serde_cache_test() {
     let path = "tests/data/serde_cache.json";
 
-    let cache = Cache::new();
+    let cache = Cache::default();
 
     let _ = serde_test_util::ser(&cache, path).unwrap();
     let result = serde_test_util::de::<Cache>(path).unwrap();
@@ -116,7 +116,7 @@ fn serde_cache_test() {
 fn ser_config_empty_test() {
     let path = "tests/data/ser_config_empty.json";
 
-    let mut config = Config::new();
+    let mut config = Config::default();
     config.format_separator = None;
     config.warnings = None;
 
@@ -134,7 +134,7 @@ fn de_config_empty_test() {
 fn serde_config_empty_test() {
     let path = "tests/data/serde_config_empty.json";
 
-    let mut config = Config::new();
+    let mut config = Config::default();
     config.format_separator = None;
     config.warnings = None;
 
@@ -156,10 +156,7 @@ fn de_config_test() {
 
 #[test]
 fn serde_config_test() {
-    // let path = "tests/data/gdl_example.json";
-    // let path = "tests/data/gdl.json";
-    let path = "tests/data/config.json";
-    // let path = "tests/data/gdl_ex.json";
+    let path = "tests/data/serde_config.json";
     
     let cl = Postprocessor {
         name: Some("classify".to_string()),
@@ -204,21 +201,12 @@ fn serde_config_test() {
     pps.insert("ugo".to_string(), StringOrPostprocessor::Postprocessor(u));
     pps.insert("zi".to_string(), StringOrPostprocessor::Postprocessor(z));
 
-    let extractor: Extractor = Extractor::new();
-
-    let mut config = Config::new();
+    let mut config = Config::default();
     config.postprocessor = Some(pps);
-    config.cache = Some(Cache::new());
-    config.downloader = Some(Downloader::new());
-    config.output = Some(Output::new());
-    config.extractor = Some(extractor);
     
     let _ = serde_test_util::ser(&config, path).unwrap();
     let result = serde_test_util::de::<Config>(path).unwrap();
 
-    let path_serde = "tests/data/serde_config.json";
-    let _ = serde_test_util::ser(&result, path_serde).unwrap();
-    
     assert_eq!(config, result);
 }
 
@@ -242,7 +230,7 @@ fn de_config_gallery_dl_example_conf_test() {
 fn ser_downloader_test() {
     let path = "tests/data/ser_downloader.json";
 
-    let downloader = Downloader::new();
+    let downloader = Downloader::default();
 
     let _ = serde_test_util::ser(&downloader, path).unwrap();
 }
@@ -266,7 +254,7 @@ fn de_downloader_test() {
 fn serde_downloader_test() {
     let path = "tests/data/serde_downloader.json";
 
-    let downloader = Downloader::new();
+    let downloader = Downloader::default();
 
     let _ = serde_test_util::ser(&downloader, path).unwrap();
     let result = serde_test_util::de::<Downloader>(path).unwrap();
@@ -278,7 +266,7 @@ fn serde_downloader_test() {
 fn ser_output_test() {
     let path = "tests/data/ser_output.json";
 
-    let output = Output::new();
+    let output = Output::default();
 
     let _ = serde_test_util::ser(&output, path).unwrap();
 }
@@ -302,7 +290,7 @@ fn de_output_test() {
 fn serde_output_test() {
     let path = "tests/data/serde_output.json";
 
-    let output = Output::new();
+    let output = Output::default();
 
     let _ = serde_test_util::ser(&output, path).unwrap();
     let result = serde_test_util::de::<Output>(path).unwrap();

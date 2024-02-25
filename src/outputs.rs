@@ -42,7 +42,7 @@ pub struct Output {
 }
 
 impl Output {
-    pub fn new() -> Self {
+    pub fn default() -> Self {
         let mut colors: HashMap<String, String> = HashMap::new();
         colors.insert("success".to_string(), "1;32".to_string());
         colors.insert("skip".to_string(), "2".to_string());
@@ -66,6 +66,27 @@ impl Output {
             num_to_str: Some(false),
         };
     }
+
+    pub fn new() -> Self {
+        return Output {
+            mode: None,
+            stdout: None,
+            stdin: None,
+            stderr: None,
+            shorten: None,
+            colors: None,
+            ansi: None,
+            skip: None,
+            fallback: None,
+            private: None,
+            progress: None,
+            log: None,
+            logfile: None,
+            unsupportedfile: None,
+            errorfile: None,
+            num_to_str: None,
+        };
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -83,4 +104,17 @@ pub struct LoggingConfiguration {
     pub encoding: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mode: Option<String>,
+}
+
+impl LoggingConfiguration {
+    pub fn new() -> Self {
+        return LoggingConfiguration {
+            level: None,
+            format: None,
+            format_date: None,
+            path: None,
+            encoding: None,
+            mode: None,
+        }
+    }
 }

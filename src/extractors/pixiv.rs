@@ -34,7 +34,7 @@ pub struct Pixiv {
 impl Pixiv {
     pub fn new() -> Self {
         return Pixiv {
-            base: None,
+            base: Some(ExtractorBase::new(None, Some(false))),
             include: Some(StringOrList::String("artworks".to_string())),
             refresh_token: None,
             embeds: Some(false),

@@ -13,7 +13,7 @@ pub struct Hitomi {
 impl Hitomi {
     pub fn new() -> Self {
         return Hitomi {
-            base: None,
+            base: Some(GalleryExtractor::new()),
             format: Some("webp".to_string()),
         }
     }

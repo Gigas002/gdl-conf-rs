@@ -21,9 +21,13 @@ pub struct Mangadex {
 }
 
 impl Mangadex {
-    pub fn new() -> Self {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = username;
+        base.password = password;
+
         return Mangadex {
-            base: None,
+            base: Some(base),
             api_server: Some("https://api.mangadex.org".to_string()),
             api_parameters:None,
             lang: None,

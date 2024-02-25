@@ -71,3 +71,11 @@ pub struct TumblrGallery {
     #[serde(flatten)]
     pub base: Option<GalleryExtractor>,
 }
+
+impl TumblrGallery {
+    pub fn new() -> Self {
+        return TumblrGallery {
+            base: Some(GalleryExtractor::new()),
+        }
+    }
+}

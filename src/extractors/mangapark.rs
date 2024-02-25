@@ -1,5 +1,9 @@
 use crate::{
-    extractors::chapter::ChapterExtractor,
+    extractors::{
+        extractor::ExtractorBase,
+        gallery::GalleryExtractor,
+        chapter::ChapterExtractor,
+    },
     enums::*,
 };
 
@@ -15,8 +19,13 @@ pub struct Mangapark {
 
 impl Mangapark {
     pub fn new() -> Self {
+        let mut gallery_extractor = GalleryExtractor::new();
+        gallery_extractor.base = Some(ExtractorBase::new(Some("firefox".to_string()), None));
+        let mut base = ChapterExtractor::new();
+        base.base = Some(gallery_extractor);
+        
         return Mangapark {
-            base: None,
+            base: Some(ChapterExtractor::new()),
             source: None,
         }
     }

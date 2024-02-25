@@ -14,9 +14,13 @@ pub struct Nijie {
 }
 
 impl Nijie {
-    pub fn new() -> Self {
+    pub fn new(username: &str, password: &str) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = Some(username.to_string());
+        base.password = Some(password.to_string());
+
         return Nijie {
-            base: None,
+            base: Some(base),
             include: Some(StringOrList::String("illustration,doujin".to_string())),
         }
     }

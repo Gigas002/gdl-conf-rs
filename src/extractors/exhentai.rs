@@ -25,9 +25,13 @@ pub struct Exhentai {
 }
 
 impl Exhentai {
-    pub fn new() -> Self {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
+        let mut base = ExtractorBase::new(None, None);
+        base.username = username;
+        base.password = password;
+
         return Exhentai {
-            base: None,
+            base: Some(base),
             domain: Some("auto".to_string()),
             fallback_retries: Some(2),
             fav: Some("4".to_string()),

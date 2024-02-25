@@ -13,7 +13,7 @@ pub struct Patreon {
 impl Patreon {
     pub fn new() -> Self {
         return Patreon {
-            base: None,
+            base: Some(ExtractorBase::new(Some("firefox".to_string()), Some(false))),
             files: Some(vec!["images".to_string(), "image_large".to_string(), "attachments".to_string(), "postfile".to_string(), "content".to_string()])
         }
     }

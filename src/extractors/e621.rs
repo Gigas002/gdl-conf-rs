@@ -17,9 +17,9 @@ pub struct E621 {
 }
 
 impl E621 {
-    pub fn new() -> Self {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
         return E621 {
-            base: None,
+            base: Some(Danbooru::new(username, password)),
             metadata: Some(BoolOrPath::Bool(false)),
             threshold: Some(StringOrInteger::String("auto".to_string())),
         }

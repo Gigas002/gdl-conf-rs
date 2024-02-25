@@ -17,6 +17,7 @@ pub struct Config {
     pub downloader: Option<Downloader>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub output: Option<Output>,
+    // TODO: consider seprating into class...
     #[serde(skip_serializing_if = "Option::is_none")]
     pub postprocessor: Option<HashMap<String, StringOrPostprocessor>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -34,6 +35,22 @@ pub struct Config {
 }
 
 impl Config {
+    pub fn default() -> Self {
+        return Config {
+            extractor: Some(Extractor::default()),
+            downloader: Some(Downloader::default()),
+            output: Some(Output::default()),
+            // TODO: default ctor
+            postprocessor: None,
+            globals: None,
+            cache: Some(Cache::default()),
+            format_separator: Some("/".to_string()),
+            signals_ignore: None,
+            subconfigs: None,
+            warnings: Some("default".to_string()),
+        }
+    }
+
     pub fn new() -> Self {
         return Config {
             extractor: None,
@@ -42,10 +59,10 @@ impl Config {
             postprocessor: None,
             globals: None,
             cache: None,
-            format_separator: Some("/".to_string()),
+            format_separator: None,
             signals_ignore: None,
             subconfigs: None,
-            warnings: Some("default".to_string()),
+            warnings: None,
         }
     }
 }

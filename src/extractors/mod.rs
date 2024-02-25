@@ -73,4 +73,3 @@ pub mod booru;
 pub mod manga;
 pub mod gallery;
 pub mod chapter;
-pub mod recursive;

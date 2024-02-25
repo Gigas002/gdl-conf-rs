@@ -26,3 +26,11 @@ pub struct Bunkr {
     #[serde(flatten)]
     pub base: Option<Lolisafe>,
 }
+
+impl Bunkr {
+    pub fn new() -> Self {
+        return Bunkr {
+            base: Some(Lolisafe::new()),
+        }
+    }
+}

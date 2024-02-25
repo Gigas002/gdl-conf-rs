@@ -13,7 +13,7 @@ pub struct Cyberdrop {
 impl Cyberdrop {
     pub fn new() -> Self {
         return Cyberdrop {
-            base: None,
+            base: Some(Lolisafe::new()),
             domain: None,
         }
     }

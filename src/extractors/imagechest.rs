@@ -13,7 +13,7 @@ pub struct Imagechest {
 impl Imagechest {
     pub fn new() -> Self {
         return Imagechest {
-            base: None,
+            base: Some(GalleryExtractor::new()),
             access_token: None,
         }
     }
