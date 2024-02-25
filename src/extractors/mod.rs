@@ -18,7 +18,6 @@ pub mod fanbox;
 pub mod flickr;
 pub mod furaffinity;
 pub mod gelbooru;
-pub mod generic;
 pub mod gofile;
 pub mod hentaifoundry;
 pub mod hitomi;

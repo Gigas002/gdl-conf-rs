@@ -25,7 +25,7 @@ pub struct Senmanga {
 }
 
 impl Senmanga {
-    pub fn default() -> Self {
+    pub fn new() -> Self {
         return Senmanga {
             base: Some(ChapterExtractor::new()),
         }

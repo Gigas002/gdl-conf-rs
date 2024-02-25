@@ -17,7 +17,7 @@ pub struct Pinterest {
 impl Pinterest {
     pub fn new() -> Self {
         return Pinterest {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             domain: Some("auto".to_string()),
             sections: Some(true),
             videos: Some(true),

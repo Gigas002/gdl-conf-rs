@@ -19,7 +19,7 @@ pub struct Mastodon {
 impl Mastodon {
     pub fn new() -> Self {
         return Mastodon {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             access_token: None,
             reblogs: Some(false),
             replies: Some(true),

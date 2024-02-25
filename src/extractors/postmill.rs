@@ -13,7 +13,7 @@ pub struct Postmill {
 impl Postmill {
     pub fn new() -> Self {
         return Postmill {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             save_link_post_body: Some(false),
         }
     }

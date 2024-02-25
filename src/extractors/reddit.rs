@@ -38,7 +38,7 @@ pub struct Reddit {
 impl Reddit {
     pub fn new() -> Self {
         return Reddit {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             comments: Some(0),
             morecomments: Some(false),
             date_min: Some(StringOrInteger::Integer(0)),

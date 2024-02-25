@@ -45,7 +45,7 @@ pub struct Tumblr {
 impl Tumblr {
     pub fn new() -> Self {
         return Tumblr {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             avatar: Some(false),
             date_min: Some(StringOrInteger::Integer(0)),
             date_max: None,

@@ -13,7 +13,7 @@ pub struct Derpibooru {
 impl Derpibooru {
     pub fn new() -> Self {
         return Derpibooru {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             filter: Some(56027),
         }
     }

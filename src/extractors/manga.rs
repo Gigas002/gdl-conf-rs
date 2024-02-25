@@ -15,7 +15,7 @@ pub struct MangaExtractor {
 impl MangaExtractor {
     pub fn new() -> Self {
         return MangaExtractor {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             chapter_reverse: Some(false),
             page_reverse: Some(false),
         }

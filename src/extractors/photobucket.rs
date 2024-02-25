@@ -13,7 +13,7 @@ pub struct Photobucket {
 impl Photobucket {
     pub fn new() -> Self {
         return Photobucket {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             subalbums: Some(true),
         }
     }

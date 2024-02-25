@@ -14,10 +14,10 @@ pub struct Nijie {
 }
 
 impl Nijie {
-    pub fn new(username: &str, password: &str) -> Self {
+    pub fn new(username: Option<String>, password: Option<String>) -> Self {
         let mut base = ExtractorBase::new(None, None);
-        base.username = Some(username.to_string());
-        base.password = Some(password.to_string());
+        base.username = username;
+        base.password = password;
 
         return Nijie {
             base: Some(base),

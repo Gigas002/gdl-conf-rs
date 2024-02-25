@@ -13,7 +13,7 @@ pub struct Plurk {
 impl Plurk {
     pub fn new() -> Self {
         return Plurk {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             comments: Some(false),
         }
     }

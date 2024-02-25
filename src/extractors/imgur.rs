@@ -18,7 +18,7 @@ pub struct Imgur {
 impl Imgur {
     pub fn new() -> Self {
         return Imgur {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             client_id: None,
             mp4: Some(BoolOrString::Bool(true)),
         }

@@ -13,7 +13,7 @@ pub struct Paheal {
 impl Paheal {
     pub fn new() -> Self {
         return Paheal {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             metadata: Some(false),
         }
     }

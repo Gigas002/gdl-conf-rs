@@ -20,7 +20,7 @@ pub struct Nitter {
 impl Nitter {
     pub fn new() -> Self {
         return Nitter {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             quoted: Some(false),
             retweets: Some(false),
             videos: Some(BoolOrString::Bool(true)),

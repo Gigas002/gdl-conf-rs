@@ -15,7 +15,7 @@ pub struct Weasyl {
 impl Weasyl {
     pub fn new() -> Self {
         return Weasyl {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             api_key: None,
             metadata: Some(false),
         }

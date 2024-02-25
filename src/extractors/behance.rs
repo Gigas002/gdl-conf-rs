@@ -13,7 +13,7 @@ pub struct Behance {
 impl Behance {
     pub fn new() -> Self {
         return Behance {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             modules: Some(vec!["image".to_string(), "video".to_string(), "mediacollection".to_string(), "embed".to_string()]),
         }
     }

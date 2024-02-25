@@ -13,7 +13,7 @@ pub struct Itaku {
 impl Itaku {
     pub fn new() -> Self {
         return Itaku {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             videos: Some(true),
         }
     }

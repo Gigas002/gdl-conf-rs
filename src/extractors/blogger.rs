@@ -13,7 +13,7 @@ pub struct Blogger {
 impl Blogger {
     pub fn new() -> Self {
         return Blogger {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             videos: Some(true),
         }
     }

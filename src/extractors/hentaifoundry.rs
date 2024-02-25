@@ -16,7 +16,7 @@ pub struct Hentaifoundry {
 impl Hentaifoundry {
     pub fn new() -> Self {
         return Hentaifoundry {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             include: Some(StringOrList::String("pictures".to_string())),
         }
     }

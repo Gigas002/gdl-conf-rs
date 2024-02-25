@@ -20,7 +20,7 @@ pub struct Wallhaven {
 impl Wallhaven {
     pub fn new() -> Self {
         return Wallhaven {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             api_key: None,
             include: Some(StringOrList::String("uploads".to_string())),
             metadata: Some(false),

@@ -114,9 +114,7 @@ fn serde_cache_test() {
 fn ser_config_empty_test() {
     let path = "tests/data/ser_config_empty.json";
 
-    let mut config = Config::default();
-    config.format_separator = None;
-    config.warnings = None;
+    let config = Config::new();
 
     let _ = serde_test_util::ser(&config, path).unwrap();
 }
@@ -132,9 +130,7 @@ fn de_config_empty_test() {
 fn serde_config_empty_test() {
     let path = "tests/data/serde_config_empty.json";
 
-    let mut config = Config::default();
-    config.format_separator = None;
-    config.warnings = None;
+    let config = Config::new();
 
     let _ = serde_test_util::ser(&config, path).unwrap();
     let result = serde_test_util::de::<Config>(path).unwrap();

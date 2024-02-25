@@ -13,7 +13,7 @@ pub struct Bbc {
 impl Bbc {
     pub fn new() -> Self {
         return Bbc {
-            base: None,
+            base: Some(GalleryExtractor::new()),
             width: Some(1920),
         }
     }

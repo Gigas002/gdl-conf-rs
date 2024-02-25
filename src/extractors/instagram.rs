@@ -28,7 +28,7 @@ pub struct Instagram {
 impl Instagram {
     pub fn new() -> Self {
         return Instagram {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             api: Some("rest".to_string()),
             include: Some(StringOrList::String("posts".to_string())),
             metadata: Some(false),

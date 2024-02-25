@@ -17,7 +17,7 @@ pub struct Misskey {
 impl Misskey {
     pub fn new() -> Self {
         return Misskey {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             access_token: None,
             renotes: Some(false),
             replies: Some(true),

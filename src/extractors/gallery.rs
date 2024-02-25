@@ -11,7 +11,7 @@ pub struct GalleryExtractor {
 impl GalleryExtractor {
     pub fn new() -> Self {
         return GalleryExtractor {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
         }
     }
 }

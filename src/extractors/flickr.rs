@@ -30,7 +30,7 @@ pub struct Flickr {
 impl Flickr {
     pub fn new() -> Self {
         return Flickr {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             access_token: None,
             access_token_secret: None,
             exif: Some(false),

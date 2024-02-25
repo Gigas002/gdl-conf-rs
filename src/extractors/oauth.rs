@@ -19,7 +19,7 @@ pub struct Oauth {
 impl Oauth {
     pub fn new() -> Self {
         return Oauth {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             browser: Some(true),
             cache: Some(true),
             host: Some("localhost".to_string()),

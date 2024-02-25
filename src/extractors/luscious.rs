@@ -13,7 +13,7 @@ pub struct Luscious {
 impl Luscious {
     pub fn new() -> Self {
         return Luscious {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             gif: Some(false),
         }
     }

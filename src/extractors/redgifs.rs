@@ -16,7 +16,7 @@ pub struct Redgifs {
 impl Redgifs {
     pub fn new() -> Self {
         return Redgifs {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             format: Some(StringOrList::List(vec!["hd".to_string(), "sd".to_string(), "gif".to_string()])),
         }
     }

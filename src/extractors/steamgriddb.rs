@@ -39,7 +39,7 @@ pub struct Steamgriddb {
 impl Steamgriddb {
     pub fn new() -> Self {
         return Steamgriddb {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             animated: Some(true),
             epilepsy: Some(true),
             dimensions: Some(StringOrList::String("all".to_string())),

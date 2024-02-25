@@ -13,7 +13,7 @@ pub struct Khinsider {
 impl Khinsider {
     pub fn new() -> Self {
         return Khinsider {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             format: Some("mp3".to_string()),
         }
     }

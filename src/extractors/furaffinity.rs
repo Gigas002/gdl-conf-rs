@@ -22,7 +22,7 @@ pub struct Furaffinity {
 impl Furaffinity {
     pub fn new() -> Self {
         return Furaffinity {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             descriptions: Some("text".to_string()),
             external: Some(false),
             include: Some(StringOrList::String("gallery".to_string())),

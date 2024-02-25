@@ -17,7 +17,7 @@ pub struct Gofile {
 impl Gofile {
     pub fn new() -> Self {
         return Gofile {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             api_token: None,
             website_token: None,
             recursive: Some(false),

@@ -17,7 +17,7 @@ pub struct Artstation {
 impl Artstation {
     pub fn new() -> Self {
         return Artstation {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             external: Some(false),
             max_posts: None,
             search: Some(ArtstationSearch::new())

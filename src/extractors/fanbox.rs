@@ -18,7 +18,7 @@ pub struct Fanbox {
 impl Fanbox {
     pub fn new() -> Self {
         return Fanbox {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             embeds: Some(BoolOrString::Bool(true)),
             metadata: Some(BoolOrPath::Bool(false)),
         }

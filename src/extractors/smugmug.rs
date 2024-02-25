@@ -17,7 +17,7 @@ pub struct Smugmug {
 impl Smugmug {
     pub fn new() -> Self {
         return Smugmug {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             videos: Some(true),
             api_key: None,
             api_secret: None,

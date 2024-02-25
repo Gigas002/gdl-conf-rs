@@ -22,7 +22,7 @@ pub struct Weibo {
 impl Weibo {
     pub fn new() -> Self {
         return Weibo {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             include: Some(StringOrList::String("feed".to_string())),
             livephoto: Some(true),
             retweets: Some(true),

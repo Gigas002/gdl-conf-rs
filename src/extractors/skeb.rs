@@ -22,7 +22,7 @@ pub struct Skeb {
 impl Skeb {
     pub fn new() -> Self {
         return Skeb {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             article: Some(false),
             sent_requests: Some(false),
             thumbnails: Some(false),

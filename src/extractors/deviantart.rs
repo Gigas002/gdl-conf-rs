@@ -58,7 +58,7 @@ pub struct Deviantart {
 impl Deviantart {
     pub fn new() -> Self {
         return Deviantart {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             auto_watch: Some(false),
             auto_unwatch: Some(false),
             comments: Some(false),

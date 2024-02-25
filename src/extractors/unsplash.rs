@@ -13,7 +13,7 @@ pub struct Unsplash {
 impl Unsplash {
     pub fn new() -> Self {
         return Unsplash {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             format: Some("raw".to_string()),
         }
     }

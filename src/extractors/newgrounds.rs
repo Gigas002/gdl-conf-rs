@@ -20,7 +20,7 @@ pub struct Newgrounds {
 impl Newgrounds {
     pub fn new() -> Self {
         return Newgrounds {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             flash: Some(true),
             format: Some("original".to_string()),
             include: Some(StringOrList::String("art".to_string())),

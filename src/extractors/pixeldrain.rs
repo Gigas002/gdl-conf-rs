@@ -13,7 +13,7 @@ pub struct Pixeldrain {
 impl Pixeldrain {
     pub fn new() -> Self {
         return Pixeldrain {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             api_key: None,
         }
     }

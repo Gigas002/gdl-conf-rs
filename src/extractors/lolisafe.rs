@@ -13,7 +13,7 @@ pub struct Lolisafe {
 impl Lolisafe {
     pub fn new() -> Self {
         return Lolisafe {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             domain: None,
         }
     }

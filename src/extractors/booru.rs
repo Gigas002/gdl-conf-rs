@@ -17,7 +17,7 @@ pub struct BooruExtractor {
 impl BooruExtractor {
     pub fn new() -> Self {
         return BooruExtractor {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             tags: Some(false),
             notes: Some(false),
             url: Some("file_url".to_string()),

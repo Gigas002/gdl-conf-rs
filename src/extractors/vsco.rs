@@ -13,7 +13,7 @@ pub struct Vsco {
 impl Vsco {
     pub fn new() -> Self {
         return Vsco {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             videos: Some(true),
         }
     }

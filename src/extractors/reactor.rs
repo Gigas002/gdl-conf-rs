@@ -13,7 +13,7 @@ pub struct Reactor {
 impl Reactor {
     pub fn new() -> Self {
         return Reactor {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             gif: Some(false),
         }
     }

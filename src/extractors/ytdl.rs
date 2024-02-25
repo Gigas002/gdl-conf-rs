@@ -29,7 +29,7 @@ pub struct Ytdl {
 impl Ytdl {
     pub fn new() -> Self {
         return Ytdl {
-            base: None,
+            base: Some(ExtractorBase::new(None, None)),
             enabled: Some(false),
             format: Some("bestvideo+bestaudio/best".to_string()),
             generic: Some(true),
