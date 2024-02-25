@@ -1,11 +1,11 @@
-use super::extractor::ExtractorBase;
+use super::{booru::BooruExtractor, extractor::ExtractorBase};
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Sankaku {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    pub base: Option<ExtractorBase>,
+    pub base: Option<BooruExtractor>,
     // TODO: enum
     #[serde(skip_serializing_if = "Option::is_none")]
     pub id_format: Option<String>,
@@ -16,7 +16,7 @@ pub struct Sankaku {
 impl Sankaku {
     pub fn new() -> Self {
         return Sankaku {
-            base: Some(ExtractorBase::new(None, None)),
+            base: None,
             id_format: Some("numeric".to_string()),
             refresh: Some(false),
         };
@@ -25,7 +25,7 @@ impl Sankaku {
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
-pub struct SankakuComplex {
+pub struct Sankakucomplex {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
@@ -35,12 +35,20 @@ pub struct SankakuComplex {
     pub videos: Option<bool>,
 }
 
-impl SankakuComplex {
+impl Sankakucomplex {
     pub fn new() -> Self {
-        return SankakuComplex {
+        return Sankakucomplex {
             base: Some(ExtractorBase::new(None, None)),
             embeds: Some(false),
             videos: Some(true),
         }
     }
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Idolcomplex {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<Sankaku>,
 }

@@ -1,11 +1,11 @@
-use super::extractor::ExtractorBase;
+use super::manga::MangaExtractor;
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Readcomiconline {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    pub base: Option<ExtractorBase>,
+    pub base: Option<MangaExtractor>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub captcha: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]

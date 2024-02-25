@@ -68,5 +68,9 @@ pub mod weasyl;
 pub mod weibo;
 pub mod ytdl;
 pub mod zerochan;
+// base extractor derivatives
 pub mod booru;
-pub mod manga_extractor;
+pub mod manga;
+pub mod gallery;
+pub mod chapter;
+pub mod recursive;

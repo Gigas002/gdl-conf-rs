@@ -1,11 +1,11 @@
-use super::extractor::ExtractorBase;
+use super::booru::BooruExtractor;
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
 pub struct Moebooru {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    pub base: Option<ExtractorBase>,
+    pub base: Option<BooruExtractor>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub pool: Option<MoebooruPool>,
 }
@@ -32,4 +32,12 @@ impl MoebooruPool {
             metadata: Some(false),
         };
     }
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename = "3dbooru")]
+pub struct _3dbooru {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<Moebooru>,
 }

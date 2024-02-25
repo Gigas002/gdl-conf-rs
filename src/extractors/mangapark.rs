@@ -1,5 +1,5 @@
 use crate::{
-    extractors::extractor::ExtractorBase,
+    extractors::chapter::ChapterExtractor,
     enums::*,
 };
 
@@ -8,7 +8,7 @@ use crate::{
 pub struct Mangapark {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    pub base: Option<ExtractorBase>,
+    pub base: Option<ChapterExtractor>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub source: Option<StringOrInteger>,
 }

@@ -2,7 +2,7 @@ use super::extractor::ExtractorBase;
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "kebab-case")]
-pub struct Generic {
+pub struct GenericExtractor {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub base: Option<ExtractorBase>,
@@ -10,9 +10,9 @@ pub struct Generic {
     pub enabled: Option<bool>,
 }
 
-impl Generic {
+impl GenericExtractor {
     pub fn new() -> Self {
-        return Generic {
+        return GenericExtractor {
             base: None,
             enabled: Some(false),
         }

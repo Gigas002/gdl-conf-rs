@@ -1,5 +1,5 @@
 use crate::{
-    extractors::extractor::ExtractorBase,
+    extractors::danbooru::Danbooru,
     enums::*,
 };
 
@@ -8,7 +8,7 @@ use crate::{
 pub struct E621 {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
-    pub base: Option<ExtractorBase>,
+    pub base: Option<Danbooru>,
     #[serde(skip_serializing_if = "Option::is_none")]
     // this is the same as bool or str or vec<str>
     pub metadata: Option<BoolOrPath>,

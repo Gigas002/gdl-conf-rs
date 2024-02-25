@@ -1,5 +1,8 @@
 use crate::{
-    extractors::extractor::ExtractorBase,
+    extractors::{
+        extractor::ExtractorBase,
+        gallery::GalleryExtractor,
+    },
     enums::*,
 };
 
@@ -59,4 +62,12 @@ impl Tumblr {
             api_secret: None,
         }
     }
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct TumblrGallery {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<GalleryExtractor>,
 }

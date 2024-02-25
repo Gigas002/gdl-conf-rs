@@ -293,7 +293,7 @@ pub struct Extractor {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub sankaku: Option<Sankaku>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub sankakucomplex: Option<SankakuComplex>,
+    pub sankakucomplex: Option<Sankakucomplex>,
 }
 
 impl Extractor {
@@ -309,7 +309,7 @@ impl Extractor {
             // categories: Some(categories),
             
             sankaku: Some(Sankaku::new()),
-            sankakucomplex: Some(SankakuComplex::new()),
+            sankakucomplex: Some(Sankakucomplex::new()),
         };
     }
 }
@@ -320,3 +320,549 @@ impl Extractor {
 //     Sankaku(Sankaku),
 //     SankakuComplex(SankakuComplex)
 // }
+
+// Children of BaseExtractor
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename = "2ch")]
+pub struct _2ch {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename = "2chan")]
+pub struct _2chan {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename = "2chen")]
+pub struct _2chen {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename = "35photo")]
+pub struct _35photo {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename = "4archive")]
+pub struct _4archive {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename = "4chan")]
+pub struct _4chan {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename = "4chanarchives")]
+pub struct _4chanarchives {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename = "500px")]
+pub struct _500px {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename = "8chan")]
+pub struct _8chan {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename = "8muses")]
+pub struct _8muses {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Bluesky {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Chevereto {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Desktopography {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Directlink {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Erome {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Fanleaks {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Fantia {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Fapachi {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Fapello {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Foolfuuka {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Foolslide {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Hatenablog {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Hotleak {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Imagebam {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Imagefap {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Imagehosts {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Imgbb {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Imgbox {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Itchio {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Jschan {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Kabeuchi {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Keenspot {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Lexica {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Lightroom {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Livedoor {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Lynxchan {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Mangoxo {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Myportfolio {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Nozomi {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Photovogue {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Picarto {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Piczel {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Pixnet {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Poipiku {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Poringa {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Pornhub {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Seiga {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Sexcom {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Shimmie2 {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Shopify {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Slickpic {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Soundgasm {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Speakerdeck {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Subscribestar {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Tapas {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Toyhouse {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Uploadir {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Urlshortener {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Vanillarock {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Vichan {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Vipergifs {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Vk {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Wallpapercave {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Warosu {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Webmshare {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Wikiart {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Wikimedia {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all = "kebab-case")]
+pub struct Xhamster {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(flatten)]
+    pub base: Option<ExtractorBase>,
+}
